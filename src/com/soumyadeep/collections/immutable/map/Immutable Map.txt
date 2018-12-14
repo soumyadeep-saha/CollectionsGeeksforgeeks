@@ -1,0 +1,333 @@
+Immutable Map in Java
+ImmutableMap, as suggested by the name, is a type of Map which is immutable. It means that the content of the map are fixed or constant after declaration, that is, they are read-only.
+If any attempt made to add, delete and update elements in the Map, UnsupportedOperationException is thrown.
+An ImmutableMap does not allow null element either.
+If any attempt made to create an ImmutableMap with null element, NullPointerException is thrown. If any attempt is made to add null element in Map, UnsupportedOperationException is thrown.
+Advantages of ImmutableMap
+
+They are thread safe.
+They are memory efficient.
+Since they are immutable, hence they can be passed over to third party libraries without any problem.
+Note that it is an immutable collection, not collection of immutable objects, so the objects inside it can be modified.
+
+Class Declaration:
+
+@GwtCompatible(serializable=true,
+               emulated=true)
+public abstract class ImmutableMap
+extends Object
+implements Map, Serializable
+Class hierarchy:
+
+java.lang.Object
+  ↳ com.google.common.collect.ImmutableMap 
+Creating ImmutableMap
+ImmutableMap can be created by various methods. These include:
+
+From existing Map using copyOf() function of Guava
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Below is the Java program to create ImmutableMap 
+  
+import com.google.common.collect.ImmutableMap; 
+import java.util.HashMap; 
+import java.util.Map; 
+  
+class MapUtil { 
+  
+    // Function to create ImmutableMap from Map 
+    public static <K, T> void iMap(Map<K, T> map) 
+    { 
+        // Create ImmutableMap from Map using copyOf() 
+        ImmutableMap<K, T> immutableMap = ImmutableMap.copyOf(map); 
+  
+        // Print the ImmutableMap 
+        System.out.println(immutableMap); 
+    } 
+  
+    public static void main(String[] args) 
+    { 
+        Map<Integer, String> map = new HashMap<Integer, String>(); 
+        map.put(1, "Geeks"); 
+        map.put(2, "For"); 
+        map.put(3, "Geeks"); 
+        iMap(map); 
+    } 
+} 
+Output:
+
+
+
+ 
+
+{1=Geeks, 2=For, 3=Geeks}
+New ImmutableMap using of() function from Guava
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Below is the Java program to create ImmutableMap 
+import com.google.common.collect.ImmutableMap; 
+import java.util.HashMap; 
+import java.util.Map; 
+  
+class MapUtil { 
+  
+    // Function to create ImmutableMap 
+    public static void createImmutableMap() 
+    { 
+        // Create ImmutableMap using of() 
+        ImmutableMap<Integer, String> immutableMap = ImmutableMap.of( 
+            1, "Geeks", 
+            2, "For", 
+            3, "Geeks"); 
+  
+        // Print the ImmutableMap 
+        System.out.println(immutableMap); 
+    } 
+  
+    public static void main(String[] args) 
+    { 
+        createImmutableMap(); 
+    } 
+} 
+Output:
+
+{1=Geeks, 2=For, 3=Geeks}
+Using Java 9 Factory Of() method
+In Java, use of() with Set, Map or List to create an Immutable Map.
+
+Please Note: The programs below are of Java 9. Hence you would need a Java 9 compiler to run them.
+
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java code illustrating of() method to 
+// create a ImmutableSet 
+import java.util.*; 
+import com.google.common.collect.ImmutableMap; 
+  
+class GfG { 
+    public static void main(String args[]) 
+    { 
+        // non-empty immutable set 
+        Map<Integer, String> map = Map.of( 
+            1, "Geeks", 
+            2, "For", 
+            3, "Geeks"); 
+  
+        // Let's print the set 
+        System.out.println(map); 
+    } 
+} 
+Output:
+
+{1=Geeks, 2=For, 3=Geeks}
+Using Builder() from ImmutableMap
+In Guava, ImmnutableMap class provides a function Builder(). Through this function, a new ImmutableMap can be created, or
+an ImmutableMap can be created from an existing Map or both.
+
+Creating a new ImmutableMap
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java code illustrating of() method to 
+// create a ImmutableSet 
+import java.util.*; 
+import com.google.common.collect.ImmutableMap; 
+  
+class GfG { 
+    public static void main(String args[]) 
+    { 
+        // non-empty immutable set 
+        ImmutableMap<Integer, String> imap =  
+                         ImmutableMap.<Integer, String>builder() 
+                                                 .put(1, "Geeks") 
+                                                 .put(2, "For") 
+                                                 .put(3, "Geeks") 
+                                                 .build(); 
+  
+        // Let's print the set 
+        System.out.println(imap); 
+    } 
+} 
+Output:
+
+{1=Geeks, 2=For, 3=Geeks}
+Creating an ImmutableMap from existing Map
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java code illustrating of() method to 
+// create a ImmutableSet 
+import java.util.*; 
+import com.google.common.collect.ImmutableMap; 
+  
+class GfG { 
+    public static void main(String args[]) 
+    { 
+        // non-empty immutable set 
+        Map<Integer, String> map = Map.of(1, "Geeks", 
+                                          2, "For", 
+                                          3, "Geeks"); 
+        ImmutableMap<Integer, String> imap =  
+                       ImmutableMap.<Integer, String>builder() 
+                                                 .putAll(map) 
+                                                 .build(); 
+  
+        // Let's print the set 
+        System.out.println(imap); 
+    } 
+} 
+Output:
+
+{1=Geeks, 2=For, 3=Geeks}
+Creating a new ImmutableMap including the existing Map
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java code illustrating of() method to 
+// create a ImmutableSet 
+import java.util.*; 
+import com.google.common.collect.ImmutableMap; 
+  
+class GfG { 
+    public static void main(String args[]) 
+    { 
+        // non-empty immutable set 
+        Map<Integer, String> map = Map.of(1, "Geeks", 
+                                          2, "For", 
+                                          3, "Geeks"); 
+        ImmutableMap<Integer, String> imap =  
+                     ImmutableMap.<Integer, String>builder() 
+                                               .putAll(map) 
+                                         .put(4, "Computer") 
+                                           .put(5, "Portal") 
+                                                   .build(); 
+  
+        // Let's print the set 
+        System.out.println(imap); 
+    } 
+} 
+Output:
+
+{1=Geeks, 2=For, 3=Geeks, 4=Computer, 5=Portal}
+
+
+Try to change ImmutableMap
+
+As mentioned earlier, the below program will throw UnsupportedOperationException.
+
+
+
+ 
+
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java code to show that UnsupportedOperationException 
+// will be thrown when ImmutableMap is modified. 
+import java.util.*; 
+  
+class GfG { 
+    public static void main(String args[]) 
+    { 
+        // empty immutable map 
+        Map<Integer, String> map = Map.of(); 
+  
+        // Lets try adding element in these set 
+        map.put(1, "Geeks"); 
+        map.put(2, "For"); 
+        map.put(3, "Geeks"); 
+    } 
+} 
+Output :
+
+Exception in thread "main" java.lang.UnsupportedOperationException
+    at com.google.common.collect.ImmutableCollection.add(ImmutableCollection.java:218)
+    at ImmutableListDemo.main(Main.java:16)
+How is it different from Collections.unmodifiableMap()?
+
+Collections.unmodifiableMap creates a wrapper around the same existing Map such that the wrapper cannot be used to modify it. However we can still change original Map.
+
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java program to demonstrate that a Map created using 
+// Collections.unmodifiableMap() can be modified indirectly. 
+import java.io.*; 
+import java.util.*; 
+  
+class GFG { 
+    public static void main(String[] args) 
+    { 
+        Map<Integer, String> map = new HashMap<Integer, String>(); 
+        map.put(1, "Geeks"); 
+        map.put(2, "For"); 
+        map.put(3, "Geeks"); 
+  
+        // Create ImmutableMap from Map using copyOf() 
+        Map<Integer, String> imap = Collections.unmodifiableMap(map); 
+  
+        // We change map and the changes reflect in imap. 
+        map.put(4, "Computer"); 
+        map.put(5, "Portal"); 
+  
+        System.out.println(imap); 
+    } 
+} 
+
+Output:
+
+{1=Geeks, 2=For, 3=Geeks, 4=Computer, 5=Portal}
+If we create an ImmutableMap from an existing Map and change the existing Map, the ImmutableMap does not change because a copy is created.
+
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Below is a Java program for 
+// Creating an immutable Map using copyOf() 
+// and modifying original Map. 
+import java.io.*; 
+import java.util.*; 
+import com.google.common.collect.ImmutableMap; 
+  
+class GFG { 
+    public static void main(String[] args) 
+    { 
+        Map<Integer, String> map = new HashMap<Integer, String>(); 
+        map.put(1, "Geeks"); 
+        map.put(2, "For"); 
+        map.put(3, "Geeks"); 
+  
+        // Create ImmutableMap from Map using copyOf() 
+        ImmutableMap<Integer, String> imap = ImmutableMap.copyOf(map); 
+  
+        // We change map and the changes wont reflect in imap. 
+        map.put(4, "Computer"); 
+        map.put(5, "Portal"); 
+  
+        System.out.println(imap); 
+    } 
+} 
+Output :
+
+{1=Geeks, 2=For, 3=Geeks}

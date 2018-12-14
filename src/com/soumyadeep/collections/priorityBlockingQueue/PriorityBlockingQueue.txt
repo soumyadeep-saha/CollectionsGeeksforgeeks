@@ -1,0 +1,304 @@
+PriorityBlockingQueue Class in Java
+PriorityBlockingQueue is an unbounded blocking queue that uses the same ordering rules as class PriorityQueue and supplies blocking retrieval operations. Since it is unbounded, adding elements may sometimes fail due to resource exhaustion resulting in OutOfMemoryError. This class does not permit null elements.
+
+PriorityBlockingQueue class and its iterator implements all of the optional methods of the Collection and Iterator interfaces. The Iterator provided in method iterator() is not guaranteed to traverse the elements of the PriorityBlockingQueue in any particular order. For ordered traversal, use Arrays.sort(pq.toArray()). Also, method drainTo() can be used to remove some or all elements in priority order and place them in another collection.
+
+Operations on this class make no guarantees about the ordering of elements with equal priority. If an ordering is needed to be enforced, define custom classes or comparators that use a secondary key to break ties in primary priority values.
+
+This class is a member of the Java Collections Framework.
+
+Class Heirarchy:
+
+
+
+ 
+
+java.lang.Object 
+    ↳ java.util.AbstractCollection 
+        ↳ java.util.AbstractQueue 
+            ↳ java.util.concurrent.PriorityBlockingQueue
+Type Parameters: The type parameter of PriorityBlockingQueue E is the type of elements held in this collection
+
+Implemented Interfaces: Following are the interfaces implemented by the PriorityBlockingQueue Class
+
+Serializable
+Iterable
+Collection
+BlockingQueue
+Queue
+Syntax:
+
+public class PriorityBlockingQueue
+    extends AbstractQueue
+        implements BlockingQueue, Serializable
+Constructor Summary:
+
+PriorityBlockingQueue()
+Creates a PriorityBlockingQueue with the default initial capacity (11) that orders its elements according to their natural ordering. Adding element more than the initial capacity changes the capacity of the PriorityBlockingQueue dynamically as the PriorityBlockingQueue is not capacity constrained.
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java program to demonstrate 
+// PriorityBlockingQueue() constructor 
+  
+import java.util.concurrent.PriorityBlockingQueue; 
+  
+public class GFG { 
+  
+    public static void main(String[] args) 
+    { 
+  
+        // create object of PriorityBlockingQueue 
+        // using PriorityBlockingQueue() constructor 
+        PriorityBlockingQueue<Integer> pbq 
+            = new PriorityBlockingQueue<Integer>(); 
+  
+        // add  numbers 
+        pbq.add(1); 
+        pbq.add(2); 
+        pbq.add(3); 
+        pbq.add(4); 
+        pbq.add(5); 
+  
+        // print queue 
+        System.out.println("PriorityBlockingQueue:"
+                           + pbq); 
+    } 
+} 
+Output:
+PriorityBlockingQueue:[1, 2, 3, 4, 5]
+PriorityBlockingQueue(Collection c)
+Creates a PriorityBlockingQueue containing the elements in the specified collection.
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java program to demonstrate 
+// PriorityBlockingQueue(Collection c) constructor 
+  
+import java.util.concurrent.PriorityBlockingQueue; 
+import java.util.*; 
+  
+public class GFG { 
+  
+    public static void main(String[] args) 
+    { 
+  
+        // Creating a Collection 
+        Vector<Integer> v = new Vector<Integer>(); 
+        v.addElement(1); 
+        v.addElement(2); 
+        v.addElement(3); 
+        v.addElement(4); 
+        v.addElement(5); 
+  
+        // create object of PriorityBlockingQueue 
+        // using PriorityBlockingQueue(Collection c) constructor 
+        PriorityBlockingQueue<Integer> pbq 
+            = new PriorityBlockingQueue<Integer>(v); 
+  
+        // print queue 
+        System.out.println("PriorityBlockingQueue:"
+                           + pbq); 
+    } 
+} 
+Output:
+PriorityBlockingQueue:[1, 2, 3, 4, 5]
+PriorityBlockingQueue(int initialCapacity)
+Creates a PriorityBlockingQueue with the specified initial capacity that orders its elements according to their natural ordering.
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java program to demonstrate 
+// PriorityBlockingQueue(int initialCapacity) constructor 
+  
+import java.util.concurrent.PriorityBlockingQueue; 
+  
+public class GFG { 
+  
+    public static void main(String[] args) 
+    { 
+        // define capacity of PriorityBlockingQueue 
+        int capacity = 15; 
+  
+        // create object of PriorityBlockingQueue 
+        // using PriorityBlockingQueue(int initialCapacity) constructor 
+        PriorityBlockingQueue<Integer> pbq 
+            = new PriorityBlockingQueue<Integer>(capacity); 
+  
+        // add  numbers 
+        pbq.add(1); 
+        pbq.add(2); 
+        pbq.add(3); 
+  
+        // print queue 
+        System.out.println("PriorityBlockingQueue:"
+                           + pbq); 
+    } 
+} 
+Output:
+
+ 
+
+PriorityBlockingQueue:[1, 2, 3]
+PriorityBlockingQueue(int initialCapacity, Comparator comparator)
+Creates a PriorityBlockingQueue with the specified initial capacity that orders its elements according to the specified comparator.
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java program to demonstrate 
+// PriorityBlockingQueue(int initialCapacity, Comparator comparator) 
+// constructor 
+  
+import java.util.concurrent.PriorityBlockingQueue; 
+import java.util.*; 
+  
+public class GFG { 
+  
+    public static void main(String[] args) 
+    { 
+        // define capacity of PriorityBlockingQueue 
+        int capacity = 15; 
+  
+        // create object of PriorityBlockingQueue 
+        PriorityBlockingQueue<Integer> 
+            pbq 
+            = new PriorityBlockingQueue<Integer>(capacity, 
+                                                 Comparator 
+                                                     .reverseOrder()); 
+  
+        // add  numbers 
+        pbq.add(1); 
+        pbq.add(2); 
+        pbq.add(3); 
+  
+        // print queue 
+        System.out.println("PriorityBlockingQueue:"
+                           + pbq); 
+    } 
+} 
+Output:
+PriorityBlockingQueue:[3, 1, 2]
+Method Summary:
+
+boolean add(E e)
+Inserts the specified element into this priority queue.
+void clear()
+Atomically removes all of the elements from this queue.
+Comparator comparator()
+Returns the comparator used to order the elements in this queue, or null if this queue uses the natural ordering of its elements.
+boolean contains(Object o)
+Returns true if this queue contains the specified element.
+>int drainTo(Collection c)
+Removes all available elements from this queue and adds them to the given collection.
+int drainTo(Collection c, int maxElements)
+Removes at most the given number of available elements from this queue and adds them to the given collection.
+Iterator iterator()
+Returns an iterator over the elements in this queue.
+boolean offer(E e)
+Inserts the specified element into this priority queue.
+boolean offer(E e, long timeout, TimeUnit unit)
+Inserts the specified element into this priority queue.
+E peek()
+Retrieves, but does not remove, the head of this queue, or returns null if this queue is empty.
+E poll()
+Retrieves and removes the head of this queue, or returns null if this queue is empty.
+E poll(long timeout, TimeUnit unit)
+Retrieves and removes the head of this queue, waiting up to the specified wait time if necessary for an element to become available.
+void put(E e)
+Inserts the specified element into this priority queue.
+int remainingCapacity()
+Always returns Integer.MAX_VALUE because a PriorityBlockingQueue is not capacity constrained.
+boolean remove(Object o)
+Removes a single instance of the specified element from this queue, if it is present.
+int size()
+Returns the number of elements in this collection.
+Spliterator spliterator()
+Returns a Spliterator over the elements in this queue.
+E take()
+Retrieves and removes the head of this queue, waiting if necessary until an element becomes available.
+Object[] toArray()
+Returns an array containing all of the elements in this queue.
+T[] toArray(T[] a)
+Returns an array containing all of the elements in this queue; the runtime type of the returned array is that of the specified array.
+String toString()
+Returns a string representation of this collection.
+Example 1: Adding elements in PriorityBlockingQueue
+
+filter_none
+edit
+play_arrow
+
+brightness_4
+import java.util.concurrent.PriorityBlockingQueue; 
+  
+public class GFG { 
+  
+    public static void main(String[] args) 
+    { 
+        // define capacity of PriorityBlockingQueue 
+        int capacity = 15; 
+  
+        // create object of PriorityBlockingQueue 
+        PriorityBlockingQueue<Integer> pbq 
+            = new PriorityBlockingQueue<Integer>(capacity); 
+  
+        // add  numbers 
+        pbq.add(1); 
+        pbq.add(2); 
+        pbq.add(3); 
+  
+        // print queue 
+        System.out.println("PriorityBlockingQueue:"
+                           + pbq); 
+    } 
+} 
+Output:
+PriorityBlockingQueue:[1, 2, 3]
+Example 2: Clearing PriorityBlockingQueue
+
+filter_none
+edit
+play_arrow
+
+brightness_4
+import java.util.concurrent.PriorityBlockingQueue; 
+  
+public class GFG { 
+  
+    public static void main(String[] args) 
+    { 
+        // define capacity of PriorityBlockingQueue 
+        int capacity = 15; 
+  
+        // create object of PriorityBlockingQueue 
+        PriorityBlockingQueue<Integer> pbq 
+            = new PriorityBlockingQueue<Integer>(capacity); 
+  
+        // add  numbers 
+        pbq.add(1); 
+        pbq.add(2); 
+        pbq.add(3); 
+  
+        // print queue 
+        System.out.println("PriorityBlockingQueue:"
+                           + pbq); 
+  
+        // remove all the elements 
+        pbq.clear(); 
+  
+        // print queue 
+        System.out.println("PriorityBlockingQueue:"
+                           + pbq); 
+    } 
+} 
+Output:
+PriorityBlockingQueue:[1, 2, 3]
+PriorityBlockingQueue:[]

@@ -1,0 +1,778 @@
+Hashtable in Java
+This class implements a hash table, which maps keys to values. Any non-null object can be used as a key or as a value.
+To successfully store and retrieve objects from a hashtable, the objects used as keys must implement the hashCode method and the equals method.
+
+It is similar to HashMap, but is synchronised.
+Hashtable stores key/value pair in hash table.
+In Hashtable we specify an object that is used as a key, and the value we want to associate to that key. The key is then hashed, and the resulting hash code is used as the index at which the value is stored within the table.
+Constructors:
+
+Hashtable(): This is the default constructor.
+Hashtable(int size): This creates a hash table that has initial size specified by size.
+Hashtable(int size, float fillRatio): This version creates a hash table that has initial size specified by size and fill ratio specified by fillRatio. fill ratio: Basically it determines how full hash table can be before it is resized upward.and its Value lie between 0.0 to 1.0
+Hashtable(Map m): This creates a hash table that is initialised with the elements in m.
+Methods:
+
+void clear() : method clears the hashtable so that it contains no keys.
+    Syntax : public void clear()
+     Returns : NA
+    Exception : NA
+Object clone() : used to create a shallow copy of this hashtable.
+    Syntax : public Object clone()
+    Returns :method call returns a clone of the hashtable.
+    Exception : NA
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java code illustrating clear() and clone() methods 
+import java.util.*; 
+class hashTabledemo { 
+    public static void main(String[] arg) 
+    { 
+        // creating a hash table 
+        Hashtable h = new Hashtable(); 
+  
+        Hashtable h1 = new Hashtable(); 
+  
+        h.put(3, "Geeks"); 
+        h.put(2, "forGeeks"); 
+        h.put(1, "isBest"); 
+  
+        // create a clone or shallow copy of hash table h 
+        h1 = (Hashtable)h.clone(); 
+  
+        // checking clone h1 
+        System.out.println("values in clone: " + h1); 
+  
+        // clear hash table h 
+        h.clear(); 
+  
+        // checking hash table h 
+        System.out.println("after clearing: " + h); 
+    } 
+} 
+Output:
+
+values in clone: {3=Geeks, 2=forGeeks, 1=isBest}
+after clearing: {}
+computeIfAbsent(Key, Function): The computeIfAbsent(Key, Function) method of Hashtable class which allows you to compute value of a mapping for specified key if key is not already associated with a value (or is mapped to null).
+Syntax: public <K, V>
+       computeIfAbsent(K key,
+             Function<K, V> remappingFunction)
+
+Parameters: This method accepts two parameters:
+key: key with which the value is to be associated.
+
+remappingFunction: function to do the operation on value.
+
+
+Returns: This method returns current (existing or computed) value associated with the specified key, or null if mapping returns null.
+
+Exception: This method throws ConcurrentModificationException if it is detected that the remapping function modified this map.
+Below programs illustrate the computeIfAbsent(Key, Function) method:
+
+
+
+ 
+
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java program to demonstrate 
+// computeIfAbsent(Key, Function) method. 
+  
+import java.util.*; 
+  
+public class GFG { 
+  
+    // Main method 
+    public static void main(String[] args) 
+    { 
+  
+        // create a table and add some values 
+        Map<String, Integer> table = new Hashtable<>(); 
+        table.put("Pen", 10); 
+        table.put("Book", 500); 
+        table.put("Clothes", 400); 
+        table.put("Mobile", 5000); 
+  
+        // print map details 
+        System.out.println("hashTable: "
+                           + table.toString()); 
+  
+        // provide value for new key which is absent 
+        // using computeIfAbsent method 
+        table.computeIfAbsent("newPen", k -> 600); 
+        table.computeIfAbsent("newBook", k -> 800); 
+  
+        // print new mapping 
+        System.out.println("new hashTable: "
+                           + table); 
+    } 
+} 
+Output:
+
+hashTable: {Book=500, Mobile=5000, Pen=10, Clothes=400}
+new hashTable: {newPen=600, Book=500, newBook=800, Mobile=5000, Pen=10, Clothes=400}
+contains(Object value): The java.util.Hashtable.contains(Object value) method in Java is used to check whether a particular value is being mapped by any keys present in the Hashtable.
+Syntax: Hash_table.contains(Object value)
+
+Parameters: The method accepts one parameter
+    value of object type and refers to the value 
+    of the hashtable whose mapping is to be verified.
+
+Return Value: The method returns a boolean
+    true value if the passed value is mapped by any of the keys in the Hashtable.
+
+Exceptions: The method throws NullPointerException
+    if the passed value is Null.
+Below programs illustrate the working of the above-mentioned method:
+
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java code to illustrate the contains() method 
+import java.util.*; 
+  
+public class Hash_Table_Demo { 
+    public static void main(String[] args) 
+    { 
+  
+        // Creating an empty Hashtable 
+        Hashtable<Integer, String> hash_table = new Hashtable<Integer, String>(); 
+  
+        // Mapping string values to int keys 
+        hash_table.put(10, "Geeks"); 
+        hash_table.put(15, "4"); 
+        hash_table.put(20, "Geeks"); 
+        hash_table.put(25, "Welcomes"); 
+        hash_table.put(30, "You"); 
+  
+        // Displaying the HashMap 
+        System.out.println("Initial Table is: " + hash_table); 
+  
+        // Checking for the Value 'Geeks' 
+        System.out.println("Is the value 'Geeks' present? " + hash_table.contains("Geeks")); 
+  
+        // Checking for the Value 'World' 
+        System.out.println("Is the value 'World' present? " + hash_table.contains("World")); 
+    } 
+} 
+Output:
+
+Initial Table is: {10=Geeks, 20=Geeks, 30=You, 15=4, 25=Welcomes}
+Is the value 'Geeks' present? true
+Is the value 'World' present? false
+boolean containsKey(Object key) : tests if some key maps into the specified value in this hashtable.
+Syntax :public boolean containsKey(Object key)
+Returns :returns true if and only if the specified object is a 
+key in this hash table.
+Exception :NullPointerException is thrown if the key is null.
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java code illustrating containsKey() method 
+import java.util.*; 
+class hashTabledemo { 
+    public static void main(String[] arg) 
+    { 
+        // creating a hash table 
+        Hashtable marks = new Hashtable(); 
+  
+        // enter name/marks pair 
+        marks.put("tweener", new Integer(345)); 
+        marks.put("krantz", new Double(245.78)); 
+        marks.put("burrows", new Integer(790)); 
+        marks.put("tancredi", new Double(365.98)); 
+        marks.put("bellick", new Integer(435)); 
+  
+        // check whether a value exists or not 
+        if (marks.contains(345)) 
+            System.out.println("value found in table"); 
+    } 
+}
+Output:
+
+value found in table
+boolean containsValue(Object value) : returns true if this hash table maps one or more keys to this value.
+Syntax :public boolean containsValue(Object value)
+Returns :returns true if this map maps one or more keys to 
+the specified value.
+Exception :NullPointerException is thrown if the value is null.
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java code illustrating containsValue() method 
+import java.util.*; 
+class hashTabledemo { 
+    public static void main(String[] arg) 
+    { 
+        // creating a hash table 
+        Hashtable marks = new Hashtable(); 
+  
+        // enter name/marks pair 
+        marks.put("tweener", new Integer(345)); 
+        marks.put("krantz", new Double(245.78)); 
+        marks.put("burrows", new Integer(790)); 
+        marks.put("tancredi", new Double(365.98)); 
+        marks.put("bellick", new Integer(435)); 
+  
+        // check whether a value exists or not 
+        if (marks.containsValue(345)) 
+            System.out.println("value found in table"); 
+    } 
+}
+Output:
+
+value found in table
+Enumeration elements() :Returns an enumeration of the values obtained in hash table.
+Syntax :public Enumeration elements()
+Returns :returns an enumeration of the values in this hash table.
+Exception :NA<
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java code illustrating elements() method 
+import java.util.*; 
+class hashTabledemo { 
+    public static void main(String[] arg) 
+    { 
+        // creating a hash table 
+        Hashtable h = new Hashtable(); 
+  
+        h.put(3, "Geeks"); 
+        h.put(2, "forGeeks"); 
+        h.put(1, "isBest"); 
+  
+        // create enumeration 
+        Enumeration e = h.elements(); 
+  
+        System.out.println("display values:"); 
+  
+        while (e.hasMoreElements()) { 
+            System.out.println(e.nextElement()); 
+        } 
+    } 
+} 
+Output:
+
+display values:
+Geeks
+forGeeks
+isBest
+entrySet() : used to get a set view of the entries contained in this hash table.
+Syntax :public Set<Map.Entry> entrySet()
+Returns :returns a set view of the mappings contained in this map.
+Exception :NA
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java code illustrating entreysent() method 
+import java.util.*; 
+class hashTabledemo { 
+    public static void main(String[] arg) 
+    { 
+        // creating a hash table 
+        Hashtable h = new Hashtable(); 
+  
+        h.put(3, "Geeks"); 
+        h.put(2, "forGeeks"); 
+        h.put(1, "isBest"); 
+  
+        // creating set view for hash table 
+        Set s = h.entrySet(); 
+  
+        // printing set entries 
+        System.out.println("set entries: " + s); 
+    } 
+}
+Output:
+
+set entries: [3=Geeks, 2=forGeeks, 1=isBest]
+boolean equals(Object o) : used to compare specified object with this Map for equality.
+Syntax :public boolean equals(Object o)
+Returns :returns true if the specified Object is equal to this Map.
+Exception :NA
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java code illustrating equal() method 
+import java.util.*; 
+class hashTabledemo { 
+    public static void main(String[] arg) 
+    { 
+        // creating a hash table 
+        Hashtable h = new Hashtable(); 
+  
+        Hashtable h1 = new Hashtable(); 
+  
+        h.put(3, "Geeks"); 
+        h.put(2, "forGeeks"); 
+        h.put(1, "isBest"); 
+  
+        h1.put(3, "Geeks"); 
+        h1.put(2, "forGeeks"); 
+        h1.put(1, "isBest"); 
+  
+        // checking whether both hash tables are equal or not 
+        if (h.equals(h1)) 
+            System.out.println("both are equal"); 
+    } 
+}
+Output:
+
+both are equal
+Object get(Object key) : used to get the object that contains the value associated with key.
+Syntax :public Object get(Object key)
+Returns :the value to which the key is mapped in this hashtable.
+Exception :NullPointerException if the key is null.
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java code illustrating get() method 
+import java.util.*; 
+class Vector_demo { 
+    public static void main(String[] arg) 
+    { 
+  
+        // creating a hash table 
+        Hashtable marks = new Hashtable(); 
+  
+        // enter name/marks pair 
+        marks.put("tweener", new Integer(345)); 
+        marks.put("krantz", new Double(245.78)); 
+        marks.put("burrows", new Integer(790)); 
+        marks.put("tancredi", new Double(365.98)); 
+        marks.put("bellick", new Integer(435)); 
+  
+        // get the value mapped with key krantz 
+  
+        System.out.println(marks.get("krantz")); 
+    } 
+} 
+Output:
+
+245.78
+int hashCode() :returns the hash code value for this Map as per the definition in the Map interface.
+Syntax :public int hashCode()
+Returns :a hash code value for this object.
+Exception :NA
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java code illustrating hashCode() method 
+import java.util.*; 
+class hashTabledemo { 
+    public static void main(String[] arg) 
+    { 
+        // creating a hash table 
+        Hashtable h = new Hashtable(); 
+  
+        h.put(3, "Geeks"); 
+        h.put(2, "forGeeks"); 
+        h.put(1, "isBest"); 
+  
+        // obtaining hash code 
+        System.out.println("hash code is: " + h.hashCode()); 
+    } 
+}
+Output:
+
+
+
+ 
+
+hash code is: -672864097
+boolean isEmpty() :used to test if this hashtable maps no keys to values.
+Syntax :public boolean isEmpty()
+Returns :true if this hashtable maps no keys to values; false otherwise.
+Exception :NA
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java code illustrating isEmpty() method 
+import java.util.*; 
+class hashTabledemo { 
+    public static void main(String[] arg) 
+    { 
+        // creating a hash table 
+        Hashtable h = new Hashtable(); 
+  
+        h.put(3, "Geeks"); 
+        h.put(2, "forGeeks"); 
+        h.put(1, "isBest"); 
+  
+        // clear hash table h 
+        h.clear(); 
+  
+        // checking whether hash table h is empty or not 
+        if (h.isEmpty()) 
+            System.out.println("yes hash table is empty"); 
+    } 
+} 
+Output:
+
+yes hash table is empty
+Enumeration keys() :used to get enumeration of the keys contained in the hash table.
+Syntax :public Enumeration keys()
+Returns :an enumeration of the keys in this hashtable.
+Exception :NA
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java code illustrating keys() method 
+import java.util.*; 
+class hashTabledemo { 
+    public static void main(String[] arg) 
+    { 
+        // creating a hash table 
+        Hashtable h = new Hashtable(); 
+  
+        Hashtable h1 = new Hashtable(); 
+  
+        h.put(3, "Geeks"); 
+        h.put(2, "forGeeks"); 
+        h.put(1, "isBest"); 
+  
+        // create enumeration 
+  
+        Enumeration e1 = h.keys(); 
+        System.out.println("display key:"); 
+  
+        while (e1.hasMoreElements()) { 
+            System.out.println(e1.nextElement()); 
+        } 
+    } 
+}
+Output:
+
+display key:
+3
+2
+1
+Object put(Object key, Object value) :maps the specified key to the specified value in this hashtable.
+Syntax :public Object put(Object key, Object value)
+Returns : returns null if key is not already in the hash table;
+returns the previous value associated with key if key is already in the hash table.
+Exception :NullPointerException if the key or value is null.
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java code illustrating put() method 
+class hashTabledemo { 
+    public static void main(String[] arg) 
+    { 
+        // creating a hash table 
+        Hashtable h = new Hashtable(); 
+  
+        // key/value pair 
+        h.put(3, "Geeks"); 
+        h.put(2, "forGeeks"); 
+        h.put(1, "isBest"); 
+  
+        System.out.println("entries in table: " + h); 
+    } 
+}
+Output:
+
+entries in table: {3=Geeks, 2=forGeeks, 1=isBest}
+putIfAbsent(Key, Function): The putIfAbsent(Key, value) method of Hashtable class which allows to map a value to a given key if given key is not associated with a value or mapped to null. A null value is returned if such key-value set is already present in the HashMap.
+Syntax: public <K, V> 
+       computeIfAbsent(K key, V value)
+
+Parameters: This method accepts two parameters:
+key: specifies the key to which the specified value is to be mapped if key is not associated with any value.
+
+value: specifies the value to be mapped to the specified key.
+
+
+Returns: This method returns the existing value mapped to the key and returns null if no value is previously mapped to the key.
+
+Exception: This method throws NullPointerException when the specified parameters are null.
+Below programs illustrate the putIfAbsent(Key, Value) method:
+
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java program to demonstrate 
+// putIfAbsent(key, value) method. 
+  
+import java.util.*; 
+  
+public class GFG { 
+  
+    // Main method 
+    public static void main(String[] args) 
+    { 
+  
+        // crete a table and add some values 
+        Map<String, Integer> 
+            table = new Hashtable<>(); 
+  
+        table.put("Pen", 10); 
+        table.put("Book", 500); 
+        table.put("Clothes", 400); 
+        table.put("Mobile", 5000); 
+  
+        // print map details 
+        System.out.println("hashTable: "
+                           + table.toString()); 
+  
+        // Inserting non-existing key with value 
+        // using putIfAbsent method 
+        String retValue 
+            = String.valueOf(table 
+                                 .putIfAbsent("Booklet", 2500)); 
+  
+        // Print the returned value 
+        System.out.println("Returned value "
+                           + "for Key 'Booklet' is: "
+                           + retValue); 
+  
+        // print new mapping 
+        System.out.println("hashTable: "
+                           + table); 
+  
+        // Inserting existing key with value 
+        // using putIfAbsent method 
+        retValue 
+            = String.valueOf(table 
+                                 .putIfAbsent("Book", 4500)); 
+  
+        // Print the returned value 
+        System.out.println("Returned value"
+                           + " for key 'Book' is: "
+                           + retValue); 
+  
+        // print new mapping 
+        System.out.println("hashTable: "
+                           + table); 
+    } 
+} 
+Output:
+
+hashTable: {Book=500, Mobile=5000, Pen=10, Clothes=400}
+Returned value for Key 'Booklet' is: null
+hashTable: {Book=500, Mobile=5000, Pen=10, Clothes=400, Booklet=2500}
+Returned value for key 'Book' is: 500
+hashTable: {Book=500, Mobile=5000, Pen=10, Clothes=400, Booklet=2500}
+KeySet() :used to get a Set view of the keys contained in this hash table.
+Syntax :public Set keySet()
+Returns :a set view of the keys contained in this map.
+Exception :NA
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java code illustrating keySet() method 
+import java.util.*; 
+class hashTabledemo { 
+    public static void main(String[] arg) 
+    { 
+        // creating a hash table 
+        Hashtable h = new Hashtable(); 
+  
+        h.put(3, "Geeks"); 
+        h.put(2, "forGeeks"); 
+        h.put(1, "isBest"); 
+  
+        // creating set view for keys 
+        Set sKey = h.keySet(); 
+  
+        // checking key set 
+        System.out.println("key set: " + sKey); 
+    } 
+} 
+Output:
+
+key set: [3, 2, 1]
+void putAll(Map t) : copies all of the mappings from the specified map to this hashtable.
+Syntax :public void putAll(Map t)
+Returns :NA
+Exception :NullPointerException if the specified map is null.
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java code illustrating putAll() method 
+import java.util.*; 
+class hashTabledemo { 
+    public static void main(String[] arg) 
+    { 
+        // creating a hash table 
+        Hashtable h = new Hashtable(); 
+  
+        Hashtable h1 = new Hashtable(); 
+  
+        h.put(3, "Geeks"); 
+        h.put(2, "forGeeks"); 
+        h.put(1, "isBest"); 
+  
+        // copy all element of h into h1 
+        h1.putAll(h); 
+  
+        // checking h1 
+        System.out.println("Values in h1: " + h1); 
+    } 
+}
+Output:
+
+Values in h1: {3=Geeks, 2=forGeeks, 1=isBest}
+</pre
+protected void rehash() : Increase the size of the hash table and rehashes all its keys.
+Syntax :protected void rehash()
+Returns :NA
+Exception :NA
+Object remove(Object key) :Removes key and its value.
+Syntax :public Object remove(Object key)
+Returns :returns the value associated with key. If key is not
+in the hash table, a null object is returned.
+Exception :NullPointerException id specified key is null.
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java code illustrating remove() method 
+import java.util.*; 
+class hashTabledemo { 
+    public static void main(String[] arg) 
+    { 
+        // creating a hash table 
+        Hashtable h = new Hashtable(); 
+  
+        h.put(3, "Geeks"); 
+        h.put(2, "forGeeks"); 
+        h.put(1, "isBest"); 
+  
+        // remove value for 2 from Hashtable h 
+        h.remove(2); 
+  
+        // checking Hashtable h 
+        System.out.println("values after remove: " + h); 
+    } 
+} 
+Output:
+
+values after remove: {3=Geeks, 1=isBest}
+int size() :returns the number of entries in hash table.
+Syntax :public int size()
+Returns :returns the number of keys in this hashtable.
+Exception :NA
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java code illustrating size() method 
+import.java.util.*; 
+class hashTabledemo { 
+    public static void main(String[] arg) 
+    { 
+        // creating a hash table 
+        Hashtable marks = new Hashtable(); 
+  
+        // enter name/marks pair 
+        marks.put("tweener", new Integer(345)); 
+        marks.put("krantz", new Double(245.78)); 
+        marks.put("burrows", new Integer(790)); 
+        marks.put("tancredi", new Double(365.98)); 
+        marks.put("bellick", new Integer(435)); 
+  
+        // size of hash table 
+        System.out.println("Size is: " + marks.size()); 
+    } 
+}
+Output:
+
+Size is: 5
+String toString() :returns the string equivalent of a hash table.
+Syntax :public String toString()
+Returns :
+Exception :NA
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java code illustrating toString() method 
+import java.util.*; 
+class hashTabledemo { 
+    public static void main(String[] arg) 
+    { 
+        // creating a hash table 
+        Hashtable h = new Hashtable(); 
+  
+        h.put(3, "Geeks"); 
+        h.put(2, "forGeeks"); 
+        h.put(1, "isBest"); 
+  
+        // String equivalent of map 
+        System.out.println("string equivalent of map: " + h.toString()); 
+    } 
+}
+Output:
+
+string equivalent of map: {3=Geeks, 2=forGeeks, 1=isBest}
+values() :used to get a Collection view of the values contained in this Hashtable.
+Syntax :public Collection values()
+Returns :returns a collection view of the values contained
+ in this map.
+Exception :NA 
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java code illustrating values() method 
+import java.util.*; 
+class hashTabledemo { 
+    public static void main(String[] arg) 
+    { 
+        // creating a hash table 
+        Hashtable h = new Hashtable(); 
+  
+        h.put(3, "Geeks"); 
+        h.put(2, "forGeeks"); 
+        h.put(1, "isBest"); 
+  
+        // creating set view for hash table 
+        Set s = h.entrySet(); 
+  
+        // checking collection view of values 
+        System.out.println("collection values: " + h.values()); 
+    } 
+}
+Output:
+
+collection values: [Geeks, forGeeks, isBest] 

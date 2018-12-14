@@ -1,0 +1,253 @@
+LinkedBlockingQueue Class in Java
+LinkedBlockingQueue is an optionally-bounded blocking queue based on linked nodes. It means that the LinkedBlockingQueue can be bounded, if its capacity is given, else the LinkedBlockingQueue will be unbounded. The capacity can be given as a parameter to the constructor of LinkedBlockingQueue. This queue orders elements FIFO (first-in-first-out). It means that the head of this queue is the oldest element of the elements present in this queue. The tail of this queue is the newest element of the elements of this queue. The newly inserted elements are always inserted at the tail of the queue, and the queue retrieval operations obtain elements at the head of the queue. Linked queues typically have higher throughput than array-based queues but less predictable performance in most concurrent applications.
+
+The capacity, if unspecified, is equal to Integer.MAX_VALUE. Linked nodes are dynamically created upon each insertion, till the capacity of the queue is not filled. This class and its iterator implement all of the optional methods of the Collection and Iterator interfaces. It is a member of the Java Collections Framework.
+
+Class Heirarchy:
+
+java.lang.Object 
+    ↳ java.util.AbstractCollection 
+        ↳ java.util.AbstractQueue 
+            ↳ java.util.concurrent.LinkedBlockingQueue
+Type Parameters: The type parameter of LinkedBlockingQueue E is the type of elements held in this collection
+
+Implemented Interfaces: Following are the interfaces implemented by the LinkedBlockingQueue Class
+
+
+
+ 
+
+Serializable
+Iterable
+Collection
+BlockingQueue
+Queue
+Syntax:
+
+public class LinkedBlockingQueue
+    extends AbstractQueue
+        implements BlockingQueue, Serializable
+Constructor Summary:
+
+LinkedBlockingQueue()
+Creates a LinkedBlockingQueue with the default initial capacity (11) that orders its elements according to their natural ordering. Adding element more than the initial capacity changes the capacity of the LinkedBlockingQueue dynamically as the LinkedBlockingQueue is not capacity constrained.
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java program to demonstrate 
+// LinkedBlockingQueue() constructor 
+  
+import java.util.concurrent.LinkedBlockingQueue; 
+  
+public class GFG { 
+  
+    public static void main(String[] args) 
+    { 
+  
+        // create object of LinkedBlockingQueue 
+        // using LinkedBlockingQueue() constructor 
+        LinkedBlockingQueue<Integer> lbq 
+            = new LinkedBlockingQueue<Integer>(); 
+  
+        // add  numbers 
+        lbq.add(1); 
+        lbq.add(2); 
+        lbq.add(3); 
+        lbq.add(4); 
+        lbq.add(5); 
+  
+        // print queue 
+        System.out.println("LinkedBlockingQueue:"
+                           + lbq); 
+    } 
+} 
+Output:
+LinkedBlockingQueue:[1, 2, 3, 4, 5]
+LinkedBlockingQueue(Collection c)
+Creates a LinkedBlockingQueue containing the elements in the specified collection.
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java program to demonstrate 
+// LinkedBlockingQueue(Collection c) constructor 
+  
+import java.util.concurrent.LinkedBlockingQueue; 
+import java.util.*; 
+  
+public class GFG { 
+  
+    public static void main(String[] args) 
+    { 
+  
+        // Creating a Collection 
+        Vector<Integer> v = new Vector<Integer>(); 
+        v.addElement(1); 
+        v.addElement(2); 
+        v.addElement(3); 
+        v.addElement(4); 
+        v.addElement(5); 
+  
+        // create object of LinkedBlockingQueue 
+        // using LinkedBlockingQueue(Collection c) constructor 
+        LinkedBlockingQueue<Integer> lbq 
+            = new LinkedBlockingQueue<Integer>(v); 
+  
+        // print queue 
+        System.out.println("LinkedBlockingQueue:"
+                           + lbq); 
+    } 
+} 
+Output:
+LinkedBlockingQueue:[1, 2, 3, 4, 5]
+LinkedBlockingQueue(int initialCapacity)
+Creates a LinkedBlockingQueue with the specified initial capacity that orders its elements according to their natural ordering. By creating the queue with this constructor makes the LinkedBlockingQueue bounded.
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java program to demonstrate 
+// LinkedBlockingQueue(int initialCapacity) constructor 
+  
+import java.util.concurrent.LinkedBlockingQueue; 
+  
+public class GFG { 
+  
+    public static void main(String[] args) 
+    { 
+        // define capacity of LinkedBlockingQueue 
+        int capacity = 15; 
+  
+        // create object of LinkedBlockingQueue 
+        // using LinkedBlockingQueue(int initialCapacity) constructor 
+        LinkedBlockingQueue<Integer> lbq 
+            = new LinkedBlockingQueue<Integer>(capacity); 
+  
+        // add  numbers 
+        lbq.add(1); 
+        lbq.add(2); 
+        lbq.add(3); 
+  
+        // print queue 
+        System.out.println("LinkedBlockingQueue:"
+                           + lbq); 
+    } 
+} 
+Output:
+LinkedBlockingQueue:[1, 2, 3]
+Method Summary:
+
+void clear()
+Atomically removes all of the elements from this queue.
+boolean contains(Object o)
+Returns true if this queue contains the specified element.
+int drainTo(Collection c)
+Removes all available elements from this queue and adds them to the given collection.
+int drainTo(Collection c, int maxElements)
+Removes at most the given number of available elements from this queue and adds them to the given collection.
+Iterator iterator()
+Returns an iterator over the elements in this queue in proper sequence.
+boolean offer(E e)
+Inserts the specified element at the tail of this queue if it is possible to do so immediately without exceeding the queue’s capacity, returning true upon success and false if this queue is full.
+boolean offer(E e, long timeout, TimeUnit unit)
+Inserts the specified element at the tail of this queue, waiting if necessary up to the specified wait time for space to become available.
+E peek()
+Retrieves, but does not remove, the head of this queue, or returns null if this queue is empty.
+E poll()
+Retrieves and removes the head of this queue, or returns null if this queue is empty.
+E poll(long timeout, TimeUnit unit)
+Retrieves and removes the head of this queue, waiting up to the specified wait time if necessary for an element to become available.
+void put(E e)
+Inserts the specified element at the tail of this queue, waiting if necessary for space to become available.
+int remainingCapacity()
+Returns the number of additional elements that this queue can ideally (in the absence of memory or resource constraints) accept without blocking.
+boolean remove(Object o)
+Removes a single instance of the specified element from this queue, if it is present.
+int size()
+Returns the number of elements in this queue.
+Spliterator spliterator()
+Returns a Spliterator over the elements in this queue.
+E take()
+Retrieves and removes the head of this queue, waiting if necessary until an element becomes available.
+Object[] toArray()
+Returns an array containing all of the elements in this queue, in proper sequence.
+T[] toArray(T[] a)
+Returns an array containing all of the elements in this queue, in proper sequence; the runtime type of the returned array is that of the specified array.
+String toString()
+Returns a string representation of this collection.
+Example 1: Adding elements in LinkedBlockingQueue
+
+filter_none
+edit
+play_arrow
+
+brightness_4
+import java.util.concurrent.LinkedBlockingQueue; 
+  
+public class GFG { 
+  
+    public static void main(String[] args) 
+    { 
+        // define capacity of LinkedBlockingQueue 
+        int capacity = 15; 
+  
+        // create object of LinkedBlockingQueue 
+        LinkedBlockingQueue<Integer> lbq 
+            = new LinkedBlockingQueue<Integer>(capacity); 
+  
+        // add  numbers 
+        lbq.add(1); 
+        lbq.add(2); 
+        lbq.add(3); 
+  
+        // print queue 
+        System.out.println("LinkedBlockingQueue:"
+                           + lbq); 
+    } 
+} 
+Output:
+LinkedBlockingQueue:[1, 2, 3]
+Example 2: Clearing the LinkedBlockingQueue
+
+filter_none
+edit
+play_arrow
+
+brightness_4
+import java.util.concurrent.LinkedBlockingQueue; 
+  
+public class GFG { 
+  
+    public static void main(String[] args) 
+    { 
+        // define capacity of LinkedBlockingQueue 
+        int capacity = 15; 
+  
+        // create object of LinkedBlockingQueue 
+        LinkedBlockingQueue<Integer> lbq 
+            = new LinkedBlockingQueue<Integer>(capacity); 
+  
+        // add  numbers 
+        lbq.add(1); 
+        lbq.add(2); 
+        lbq.add(3); 
+  
+        // print queue 
+        System.out.println("LinkedBlockingQueue:"
+                           + lbq); 
+  
+        // remove all the elements 
+        lbq.clear(); 
+  
+        // print queue 
+        System.out.println("LinkedBlockingQueue:"
+                           + lbq); 
+    } 
+} 
+Output:
+LinkedBlockingQueue:[1, 2, 3]
+LinkedBlockingQueue:[]

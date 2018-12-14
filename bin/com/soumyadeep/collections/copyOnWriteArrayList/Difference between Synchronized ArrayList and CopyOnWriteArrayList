@@ -1,0 +1,41 @@
+Java Collection| Difference between Synchronized ArrayList and CopyOnWriteArrayList
+As the ArrayList is not synchronized, If multiple threads try to modify an ArrayList at the same time, then the final outcome will be non-deterministic. Hence synchronizing the ArrayList is a must to achieve thread safety in multi-threaded environment.
+
+This synchronization of Arraylist can be done by two ways:
+
+Using Collections.synchronizedList()
+Using CopyOnWriteArrayList (COWAL).
+Since both are used to achieve thread safety in Arraylist, the question appears, when to use COWAL and when to use Collection.synchronizedList(). This can be understood by understanding the differences between them. The main difference between synchronized ArrayList and CopyOnWriteArrayList comes from their performance, scalability and how they achieve thread safety.
+
+Why CopyOnWriteArrayList came into existence when Collection.synchronizedList() was already present
+Initially, SynchronizedList was used in multithreaded environment but it had some limitations. All of its read and write methods were synchronized on the list object itself, i.e. if a thread is executing add() method, it blocks other threads which want to get the iterator to access elements in the list. Also, only one thread was allowed iterate the list’s elements at a time, which was inefficient. That was quite rigid.
+
+Thus a more flexible collection was required which allows:
+
+Multiple threads executing read operations concurrently.
+One thread executing read operation and another executing write operation concurrently.
+Only one thread can execute write operation while other threads can execute read operations simultaneously.
+To overcome these issues, finally in Java 5, the new set of collection classes called Concurrent Collections was introduced which had CopyOnWriteArrayList in it. The CopyOnWriteArrayList class is designed to enable such sequential write and concurrent reads features.
+
+The major differences between them are:
+Locking of threads : Synchronized List locks the whole list to provide synchronization and thread-safety during the read or write operation, while, CopyOnWriteArrayList doesn’t lock the whole list during these operations.
+The CopyOnWriteArrayList class works according to its name i.e. copy-on-write which perform different actions for read and write operation. For every write operation (add, set, remove, etc), it makes a new copy of the elements in the list. and for the read operations (get, iterator, listIterator, etc), it works on a different copy. So there is no additional overhead during a read operation and its read operation is faster than Collections.SynchronizedList(). Thus, COWAL is better for read operation than Synchronized List.
+
+Write Operations : For write operation in ArrayList, COWAL write operations are slower than Collections.synchronizedList(), since it uses Re-entrantLock. The write method will always create a copy of the existing array and do the modification on the copy and then finally update the volatile reference of the array to point to this new array. Therefore, it has massive overhead during a write operation. That’s why CopyOnWriteArrayList write operations are slower than Collections.synchronizedList().
+Behavior during Modification : Synchronized List is a fail-fast iterator, i.e. it will throw ConcurrentModifcationException when the list is modified when one thread is iterating over it whereas CopyOnWriteArrayList is a fail-safe iterator, i.e. it will not throw ConcurrentModifcationException even when the list is modified when one thread is iterating over it.
+Number of threads working : Only one thread is allowed to operate on Synchronized List, by locking over complete list object which affects its performance since other threads are waiting whereas in case of COWAL, multiple threads are allowed to operate on ArrayList, as it works on separate cloned copy for update/modify operations which makes its performance faster.
+Iterating within block : While iterating synchronized List, make sure to iterate inside synchronized block whereas in CopyOnWriteArrayList, we can safely iterate outside synchronized block.
+When to use SynchronizedList?
+Since in CopyOnWriteArrayList for every update/modify operations, a new separate cloned copy is created and there is overhead on JVM to allocate memory & merging cloned copy with original copy. Thus, in this case SynchronizedList is better option.
+When size of Arraylist is large.
+When to use CopyOnWriteArrayList?
+The CopyOnWriteArrayList provides reading without a lock, which means a much better performance if there are more reader threads and write is happening quite low.
+When the size of Arraylist is small.
+SynchronizedList v/s CopyOnWriteArrayList
+SYNCHRONIZEDLIST	COPYONWRITEARRAYLIST
+It locks the whole list for thread-safety during both read or write operation.	It locks the list during write operation only, so no lock during read operation therefore, multiple threads executing read operations concurrently.
+It is a fail-fast iterator.	It is a fail-safe iterator.
+It is Introduced in Java 1.2 version.	It is Introduced in Java 1.5 version.
+Iteration of list should be inside synchronized block otherwise it will face non-deterministic behaviour.	It can safely iterate outside the synchronized block.
+If any other thread tries to modify the list while one thread iterating that list, then it will throw ConcurrentModificationException.	It doesn’t allow modifying the list while traversing, and it will not throw ConcurrentModificationException if the list is being modified by other thread during the traversal.
+It is best to use when arraylist is large and write operation are greater than read operation in list.	It is best to use when ArrayList is small or read operation are greater then write operation.

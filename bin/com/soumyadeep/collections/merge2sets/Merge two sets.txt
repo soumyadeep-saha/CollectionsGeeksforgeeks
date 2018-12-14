@@ -1,0 +1,559 @@
+Merge two sets in Java
+Prerequisites : Sets in Java
+
+Following are the various ways to merge two sets in Java:
+
+Double brace Initialization :
+Examples:
+
+
+
+ 
+
+Input : a = [1, 3, 5, 7, 9]
+        b = [0, 2, 4, 6, 8]
+Output : [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java program to demonstrate 
+// merging of two sets in Java 
+// using Double brace Initialization 
+import java.util.stream.*; 
+import java.util.*; 
+import java.io.*; 
+  
+public class GfG { 
+  
+    // Function merging two sets using DoubleBrace Initialisation 
+    public static <T> Set<T> mergeSet(Set<T> a, Set<T> b) 
+    { 
+        return new HashSet<T>() {{ 
+                      addAll(a); 
+                       addAll(b); 
+        } }; 
+    } 
+  
+    public static void main(String[] args) 
+    { 
+  
+        // Creating the sets to be merged 
+        // First set 
+        Set<Integer> a = new HashSet<Integer>(); 
+        a.addAll(Arrays.asList(new Integer[] { 1, 3, 5, 7, 9 })); 
+  
+        // Second set 
+        Set<Integer> b = new HashSet<Integer>(); 
+        b.addAll(Arrays.asList(new Integer[] { 0, 2, 4, 6, 8 })); 
+  
+        // Printing the sets 
+        System.out.println("Set a: " + a); 
+        System.out.println("Set b: " + b); 
+  
+        // calling mergeSets() 
+        System.out.println("Merged Set: " + mergeSet(a, b)); 
+    } 
+} 
+Output:
+Set a: [1, 3, 5, 7, 9]
+Set b: [0, 2, 4, 6, 8]
+Merged Set: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Set addAll() : The addAll() method is provided by the Set interface. It adds the elements passed as parameter at the last of this set.
+Using user-defined method
+Examples:
+
+Input : a = [1, 3, 5, 7, 9]
+        b = [0, 2, 4, 6, 8]
+Output : [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java program to demonstrate 
+// merging of two sets in Java 
+// using SetAll() method 
+import java.util.*; 
+  
+public class GfG { 
+  
+    // Function merging two sets using addAll() 
+    public static <T> Set<T> mergeSet(Set<T> a, Set<T> b) 
+    { 
+  
+        // Creating an empty set 
+        Set<T> mergedSet = new HashSet<T>(); 
+  
+        // add the two sets to be merged 
+        // into the new set 
+        mergedSet.addAll(a); 
+        mergedSet.addAll(b); 
+  
+        // returning the merged set 
+        return mergedSet; 
+    } 
+  
+    public static void main(String[] args) 
+    { 
+  
+        // Creating the sets to be merged 
+        // First set 
+        Set<Integer> a = new HashSet<Integer>(); 
+        a.addAll(Arrays.asList(new Integer[] { 1, 3, 5, 7, 9 })); 
+  
+        // Second set 
+        Set<Integer> b = new HashSet<Integer>(); 
+        b.addAll(Arrays.asList(new Integer[] { 0, 2, 4, 6, 8 })); 
+  
+        // Printing the sets 
+        System.out.println("Set a: " + a); 
+        System.out.println("Set b: " + b); 
+  
+        // calling mergeSets() 
+        System.out.println("Merged Set: " + mergeSet(a, b)); 
+    } 
+} 
+Output:
+Set a: [1, 3, 5, 7, 9]
+Set b: [0, 2, 4, 6, 8]
+Merged Set: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Using Java 8 stream in the user defined function
+Examples:
+
+
+
+ 
+
+Input : a = [1, 3, 5, 7, 9]
+        b = [0, 2, 4, 6, 8]
+Output : [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java program to demonstrate 
+// merging of two sets in Java 
+// using stream 
+  
+import java.util.stream.*; 
+import java.util.*; 
+import java.io.*; 
+  
+public class GfG { 
+  
+    // Function merging two sets using addAll() 
+    public static <T> Set<T> mergeSet(Set<T> a, Set<T> b) 
+    { 
+  
+        // Creating a set with 'a' 
+        Set<T> mergedSet = a.stream() 
+                               .collect(Collectors.toSet()); 
+  
+        // add the second set to be merged 
+        mergedSet.addAll(b); 
+  
+        // returning the merged set 
+        return mergedSet; 
+    } 
+  
+    public static void main(String[] args) 
+    { 
+  
+        // Creating the sets to be merged 
+        // First set 
+        Set<Integer> a = new HashSet<Integer>(); 
+        a.addAll(Arrays.asList(new Integer[] { 1, 3, 5, 7, 9 })); 
+  
+        // Second set 
+        Set<Integer> b = new HashSet<Integer>(); 
+        b.addAll(Arrays.asList(new Integer[] { 0, 2, 4, 6, 8 })); 
+  
+        // Printing the sets 
+        System.out.println("Set a: " + a); 
+        System.out.println("Set b: " + b); 
+  
+        // calling mergeSets() 
+        System.out.println("Merged Set: " + mergeSet(a, b)); 
+    } 
+} 
+Output:
+Set a: [1, 3, 5, 7, 9]
+Set b: [0, 2, 4, 6, 8]
+Merged Set: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Collections.addAll() :
+Examples:
+
+Input : a = [1, 3, 5, 7, 9]
+        b = [0, 2, 4, 6, 8]
+Output : [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java program to merge two arrays of 
+// same type into an Object array. 
+  
+import java.util.*; 
+import java.io.*; 
+  
+class GFG { 
+  
+    // Function merging two sets using addAll() 
+    public static Set<Integer> mergeSet(Set<Integer> a, Set<Integer> b) 
+    { 
+  
+        // Creating an empty set 
+        Set<Integer> mergedSet = new HashSet<>(); 
+  
+        // add the two sets to be merged 
+        // into the new set 
+        Collections.addAll(mergedSet, a.toArray(new Integer[0])); 
+        Collections.addAll(mergedSet, b.toArray(new Integer[0])); 
+  
+        // returning the merged set 
+        return mergedSet; 
+    } 
+  
+    public static void main(String[] args) 
+    { 
+  
+        // Creating the sets to be merged 
+        // First set 
+        Set<Integer> a = new HashSet<Integer>(); 
+        a.addAll(Arrays.asList(new Integer[] { 1, 3, 5, 7, 9 })); 
+  
+        // Second set 
+        Set<Integer> b = new HashSet<Integer>(); 
+        b.addAll(Arrays.asList(new Integer[] { 0, 2, 4, 6, 8 })); 
+  
+        // Printing the sets 
+        System.out.println("Set a: " + a); 
+        System.out.println("Set b: " + b); 
+  
+        // calling mergeSets() 
+        System.out.println("Merged Set: " + mergeSet(a, b)); 
+    } 
+} 
+Output:
+Set a: [1, 3, 5, 7, 9]
+Set b: [0, 2, 4, 6, 8]
+Merged Set: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Stream.of() + Stream.forEach():
+Examples:
+
+Input : a = [1, 3, 5, 7, 9]
+        b = [0, 2, 4, 6, 8]
+Output : [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java program to demonstrate 
+// merging of two sets in Java 
+// using stream 
+  
+import java.util.stream.*; 
+import java.util.*; 
+import java.io.*; 
+  
+public class GfG { 
+  
+    // Function merging two sets 
+    // using Stream of() and forEach() methods 
+    public static <T> Set<T> mergeSet(Set<T> a, Set<T> b) 
+    { 
+  
+        // Creating an empty set 
+        Set<T> mergedSet = new HashSet<T>(); 
+  
+        // add the two sets to be merged 
+        // into the new set 
+        Stream.of(a, b).forEach(mergedSet::addAll); 
+  
+        // returning the merged set 
+        return mergedSet; 
+    } 
+  
+    public static void main(String[] args) 
+    { 
+  
+        // Creating the sets to be merged 
+        // First set 
+        Set<Integer> a = new HashSet<Integer>(); 
+        a.addAll(Arrays.asList(new Integer[] { 1, 3, 5, 7, 9 })); 
+  
+        // Second set 
+        Set<Integer> b = new HashSet<Integer>(); 
+        b.addAll(Arrays.asList(new Integer[] { 0, 2, 4, 6, 8 })); 
+  
+        // Printing the sets 
+        System.out.println("Set a: " + a); 
+        System.out.println("Set b: " + b); 
+  
+        // calling mergeSets() 
+        System.out.println("Merged Set: " + mergeSet(a, b)); 
+    } 
+} 
+Output:
+Set a: [1, 3, 5, 7, 9]
+Set b: [0, 2, 4, 6, 8]
+Merged Set: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Stream.of() + flatMap() + Collector:
+Examples:
+
+Input : a = [1, 3, 5, 7, 9]
+        b = [0, 2, 4, 6, 8]
+Output : [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java program to demonstrate 
+// merging of two sets in Java 
+// using stream 
+  
+import java.util.stream.*; 
+import java.util.*; 
+import java.io.*; 
+  
+public class GfG { 
+  
+    // Function merging two sets 
+    // using Stream of(), flatMap() and Collector 
+    public static <T> Set<T> mergeSet(Set<T> a, Set<T> b) 
+    { 
+  
+        // add the two sets to be merged 
+        // into the new set and 
+        // return the merged set 
+        return Stream.of(a, b) 
+            .flatMap(x -> x.stream()) 
+            .collect(Collectors.toSet()); 
+    } 
+  
+    public static void main(String[] args) 
+    { 
+  
+        // Creating the sets to be merged 
+        // First set 
+        Set<Integer> a = new HashSet<Integer>(); 
+        a.addAll(Arrays.asList(new Integer[] { 1, 3, 5, 7, 9 })); 
+  
+        // Second set 
+        Set<Integer> b = new HashSet<Integer>(); 
+        b.addAll(Arrays.asList(new Integer[] { 0, 2, 4, 6, 8 })); 
+  
+        // Printing the sets 
+        System.out.println("Set a: " + a); 
+        System.out.println("Set b: " + b); 
+  
+        // calling mergeSets() 
+        System.out.println("Merged Set: " + mergeSet(a, b)); 
+    } 
+} 
+Output:
+Set a: [1, 3, 5, 7, 9]
+Set b: [0, 2, 4, 6, 8]
+Merged Set: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Stream.concat() + Collector :
+Examples:
+
+
+
+ 
+
+Input : a = [1, 3, 5, 7, 9]
+        b = [0, 2, 4, 6, 8]
+Output : [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+The concatenate function is used to merge to string and make a single string that contains both the string. Stream.concat() method creates a lazily concatenated stream whose elements are all the elements of the first stream followed by all the elements of the second stream.
+
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java program to demonstrate 
+// merging of two sets in Java 
+// using stream 
+  
+import java.util.stream.*; 
+import java.util.*; 
+import java.io.*; 
+  
+public class GfG { 
+  
+    // Function merging two sets 
+    // using Stream concat() and Collectors 
+    public static <T> Set<T> mergeSet(Set<T> a, Set<T> b) 
+    { 
+  
+        // add the two sets to be merged 
+        // into the new set and 
+        // return the merged set 
+        return Stream.concat(a.stream(), b.stream()) 
+            .collect(Collectors.toSet()); 
+    } 
+  
+    public static void main(String[] args) 
+    { 
+  
+        // Creating the sets to be merged 
+        // First set 
+        Set<Integer> a = new HashSet<Integer>(); 
+        a.addAll(Arrays.asList(new Integer[] { 1, 3, 5, 7, 9 })); 
+  
+        // Second set 
+        Set<Integer> b = new HashSet<Integer>(); 
+        b.addAll(Arrays.asList(new Integer[] { 0, 2, 4, 6, 8 })); 
+  
+        // Printing the sets 
+        System.out.println("Set a: " + a); 
+        System.out.println("Set b: " + b); 
+  
+        // calling mergeSets() 
+        System.out.println("Merged Set: " + mergeSet(a, b)); 
+    } 
+} 
+Output:
+Set a: [1, 3, 5, 7, 9]
+Set b: [0, 2, 4, 6, 8]
+Merged Set: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Apache Common Collections:
+Examples:
+
+Input : a = [1, 3, 5, 7, 9]
+        b = [0, 2, 4, 6, 8]
+Output : [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java program to demonstrate 
+// merging of two sets in Java 
+// using Apache Common Collection 
+import org.apache.commons.collections4.SetUtils; 
+import java.util.*; 
+import java.io.*; 
+  
+public class GfG { 
+  
+    // Function merging two sets using addAll() 
+    public static <T> Set<T> mergeSet(Set<T> a, Set<T> b) 
+    { 
+  
+        // add the two sets to be merged 
+        // into the new set and 
+        // return the merged set 
+        return SetUtils.union(a, b); 
+    } 
+  
+    public static void main(String[] args) 
+    { 
+  
+        // Creating the sets to be merged 
+        // First set 
+        Set<Integer> a = new HashSet<Integer>(); 
+        a.addAll(Arrays.asList(new Integer[] { 1, 3, 5, 7, 9 })); 
+  
+        // Second set 
+        Set<Integer> b = new HashSet<Integer>(); 
+        b.addAll(Arrays.asList(new Integer[] { 0, 2, 4, 6, 8 })); 
+  
+        // Printing the sets 
+        System.out.println("Set a: " + a); 
+        System.out.println("Set b: " + b); 
+  
+        // calling mergeSets() 
+        System.out.println("Merged Set: " + mergeSet(a, b)); 
+    } 
+} 
+Output:
+Set a: [1, 3, 5, 7, 9]
+Set b: [0, 2, 4, 6, 8]
+Merged Set: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Guava Iterables.concat():
+Examples:
+
+Input : a = [1, 3, 5, 7, 9]
+        b = [0, 2, 4, 6, 8]
+Output : [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java program to demonstrate 
+// merging of two sets in Java 
+// using Guava library 
+  
+import com.google.common.collect.Iterables; 
+import com.google.common.collect.Sets; 
+import java.util.*; 
+import java.io.*; 
+  
+public class GfG { 
+  
+    // Function merging two sets 
+    // using Guava Iterables.concat() 
+    public static <T> Set<T> mergeSet(Set<T> a, Set<T> b) 
+    { 
+  
+        // add the two sets to be merged 
+        // into the new set and 
+        // return the merged set 
+        return Sets.newHashSet(Iterables.concat(a, b)); 
+    } 
+  
+    public static void main(String[] args) 
+    { 
+  
+        // Creating the sets to be merged 
+        // First set 
+        Set<Integer> a = new HashSet<Integer>(); 
+        a.addAll(Arrays.asList(new Integer[] { 1, 3, 5, 7, 9 })); 
+  
+        // Second set 
+        Set<Integer> b = new HashSet<Integer>(); 
+        b.addAll(Arrays.asList(new Integer[] { 0, 2, 4, 6, 8 })); 
+  
+        // Printing the sets 
+        System.out.println("Set a: " + a); 
+        System.out.println("Set b: " + b); 
+  
+        // calling mergeSets() 
+        System.out.println("Merged Set: " + mergeSet(a, b)); 
+    } 
+} 
+Output:
+Set a: [1, 3, 5, 7, 9]
+Set b: [0, 2, 4, 6, 8]
+Merged Set: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Note : Any duplicate element presents in the sets will be discarded during the merge in all the above methods.
+
+
+
+ 
+
+Recommended Posts:
+Sets powerSet() function | Guava | Java
+Sets union() function | Guava | Java
+Sets difference() function | Guava | Java
+Sets intersection() function | Guava | Java
+StringJoiner merge() method in Java
+Merge arrays into a new object array in Java
+Java program to merge two files into a third file
+Java program to merge two files alternatively into third file
+Java program to merge two files alternatively into third file
+Merge two arrays keeping original keys in PHP
+Java.util.LinkedList.poll(), pollFirst(), pollLast() with examples in Java
+Java lang.Long.byteValue() method in Java with Examples
+Java.util.LinkedList.peek() , peekfirst(), peeklast() in Java
+Java.util.LinkedList.offer(), offerFirst(), offerLast() in Java
+Java lang.Long.highestOneBit() method in Java with Examples

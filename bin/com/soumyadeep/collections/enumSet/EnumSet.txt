@@ -1,0 +1,69 @@
+EnumSet in Java
+Pre-requisite: Enum in Java
+EnumSet is one of the specialized implementation of Set interface for use with the enumeration type. Few important features of EnumSet are as follows:
+
+It extends AbstractSet and implements Set Interface in Java.
+EnumSet class is a member of the Java Collections Framework & is not synchronized.
+It’s a high performance set implementation, much faster than HashSet.
+All of the elements in an enum set must come from a single enumeration type that is specified when the set is created either explicitly or implicitly.
+Declaration:
+
+public abstract class EnumSet<E extends Enum<E>> 
+Here, E specifies the elements. E must extend Enum, which enforces the requirement that the elements must be of specified enum type.
+
+Below program illustrates a few basic functions of EnumSet:
+
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java program to illustrate working of EnumSet and 
+// its functions. 
+import java.util.EnumSet; 
+     
+enum Gfg  
+{ 
+    CODE, LEARN, CONTRIBUTE, QUIZ, MCQ 
+}; 
+public class Example 
+{ 
+    public static void main(String[] args)  
+    { 
+        // Creating a set 
+        EnumSet<Gfg> set1, set2, set3, set4; 
+  
+        // Adding elements 
+        set1 = EnumSet.of(Gfg.QUIZ, Gfg.CONTRIBUTE,  
+                          Gfg.LEARN, Gfg.CODE); 
+        set2 = EnumSet.complementOf(set1); 
+        set3 = EnumSet.allOf(Gfg.class); 
+        set4 = EnumSet.range(Gfg.CODE, Gfg.CONTRIBUTE); 
+        System.out.println("Set 1: " + set1); 
+        System.out.println("Set 2: " + set2); 
+        System.out.println("Set 3: " + set3); 
+        System.out.println("Set 4: " + set4); 
+    } 
+} 
+Output:
+
+ 
+
+Set 1: [CODE, LEARN, CONTRIBUTE, QUIZ]
+Set 2: [MCQ]
+Set 3: [CODE, LEARN, CONTRIBUTE, QUIZ, MCQ]
+Set 4: [CODE, LEARN, CONTRIBUTE]
+Methods in EnumSet:
+
+EnumSet of(E e1): Creates an enum set initially containing the specified elements.
+EnumSet of(E e11, E el2): Creates an enum set initially containing the specified elements.
+EnumSet of(E e11, E el2, Eel3): Creates an enum set initially containing the specified elements.
+EnumSet of(E e11, E el2, Eel3,E el4….): Creates an enum set initially containing the specified elements.
+EnumSet of(E e1, E rest…): Creates an enum set initially containing the specified elements.
+EnumSet complementOf(EnumSet s): Creates an enum set with the same element type as the specified enum set, initially containing all the elements of this type that are not contained in the specified set.
+EnumSet allOf(Class elementType): Creates an enum set containing all of the elements in the specified element type.
+EnumSet range(E from, E to): Creates an enum set initially containing all of the elements in the range defined by the two specified endpoints.
+EnumSet copyof(): The method is used to copy all of the contents from a collection to a new enum set.
+EnumSet copyof(EnumSet s): The method is used to copy all of the contents from an existing EnumSet to a new enum set.
+EnumSet clone(): The method is used to return a shallow copy of the existing or this set.
+EnumSet noneOf(): The method is used to create a null set.

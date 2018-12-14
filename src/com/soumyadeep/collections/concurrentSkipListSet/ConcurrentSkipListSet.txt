@@ -1,0 +1,160 @@
+ConcurrentSkipListSet in Java with Examples
+The ConcurrentSkipListSet class in Java is a part of the Java Collection Framework and implements the Collection interface and the AbstractSet class. It provides a scalable and concurrent version of NavigableSet in Java. The implementation of ConcurrentSkipListSet is based on ConcurrentSkipListMap. The elements in ConcurrentSkipListSet are sorted by default in their natural ordering.
+
+Class Hierarchy:
+
+java.lang.Object
+   ↳ java.util.AbstractCollection<E>
+      ↳ java.util.AbstractSet<E>
+         ↳ Class ConcurrentSkipListSet<E>
+Syntax:
+
+public class ConcurrentSkipListSet<E>
+    extends AbstractSet<E>
+        implements NavigableSet<E>, Cloneable, Serializable
+
+Where E is the type of elements maintained 
+by this collection
+Constructors in Java ConcurrentSkipListSet:
+
+ConcurrentSkipListSet(): This constructor is used to construct an empty set.
+ConcurrentSkipListSet(Collection<E> c): This constructor is used to construct a set with the elements of the Collection passed as the parameter.
+ConcurrentSkipListSet(Comparator<E> comparator): This constructor is used to construct a new, empty set that orders its elements according to the specified comparator.
+ConcurrentSkipListSet(SortedSet<E> s): This constructor is used to construct a new set containing the same elements and using the same ordering as the specified sorted set.
+Below is a sample program to illustrate ConcurrentSkipListSet in Java:
+
+
+
+ 
+
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java program to demonstrate ConcurrentSkipListSet 
+  
+import java.util.concurrent.ConcurrentSkipListSet; 
+  
+class ConcurrentSkipListSetLastExample1 { 
+    public static void main(String[] args) 
+    { 
+  
+        // Initializing the set using ConcurrentSkipListSet() 
+        ConcurrentSkipListSet<Integer> 
+            set = new ConcurrentSkipListSet<Integer>(); 
+  
+        // Adding elements to this set 
+        set.add(78); 
+        set.add(64); 
+        set.add(12); 
+        set.add(45); 
+        set.add(8); 
+  
+        // Printing the ConcurrentSkipListSet 
+        System.out.println("ConcurrentSkipListSet: "
+                           + set); 
+  
+        // Initializing the set using 
+        // ConcurrentSkipListSet(Collection) 
+        ConcurrentSkipListSet<Integer> 
+            set1 = new ConcurrentSkipListSet<Integer>(set); 
+  
+        // Printing the ConcurrentSkipListSet1 
+        System.out.println("ConcurrentSkipListSet1: "
+                           + set1); 
+    } 
+} 
+Output:
+ConcurrentSkipListSet: [8, 12, 45, 64, 78]
+ConcurrentSkipListSet1: [8, 12, 45, 64, 78]
+Methods in Java ConcurrentSkipListSet:
+
+add(E e): This method adds the specified element to this set if it is not already present.
+ceiling(E e): This method returns the least element in this set greater than or equal to the given element, or null if there is no such element.
+clear(): This method removes all of the elements from this set.
+clone(): This method returns a shallow copy of this ConcurrentSkipListSet instance.
+comparator(): This method returns the comparator used to order the elements in this set, or null if this set uses the natural ordering of its elements.
+contains(Object o): This method returns true if this set contains the specified element.
+descendingIterator(): This method returns an iterator over the elements in this set in descending order.
+descendingSet(): This method returns a reverse order view of the elements contained in this set.
+equals(Object o): This method compares the specified object with this set for equality.
+first(): This method returns the first (lowest) element currently in this set.
+floor(E e): This method returns the greatest element in this set less than or equal to the given element, or null if there is no such element.
+headSet(E toElement): This method returns a view of the portion of this set whose elements are strictly less than toElement.
+headSet(E toElement, boolean inclusive): This method returns a view of the portion of this set whose elements are less than (or equal to, if inclusive is true) toElement.
+higher(E e): This method returns the least element in this set strictly greater than the given element, or null if there is no such element.
+isEmpty(): This method returns true if this set contains no elements.
+iterator(): This method returns an iterator over the elements in this set in ascending order.
+last(): This method returns the last (highest) element currently in this set.
+lower(E e): This method returns the greatest element in this set strictly less than the given element, or null if there is no such element.
+pollFirst(): This method retrieves and removes the first (lowest) element, or returns null if this set is empty.
+pollLast(): This method retrieves and removes the last (highest) element, or returns null if this set is empty.
+remove(Object o): This method removes the specified element from this set if it is present.
+removeAll(Collection<E> c): This method removes from this set all of its elements that are contained in the specified collection.
+size(): This method returns the number of elements in this set.
+spliterator(): This method returns a Spliterator over the elements in this set.
+subSet(E fromElement, boolean fromInclusive, E toElement, boolean toInclusive): This method returns a view of the portion of this set whose elements range from fromElement to toElement.
+subSet(E fromElement, E toElement): This method returns a view of the portion of this set whose elements range from fromElement, inclusive, to toElement, exclusive.
+tailSet(E fromElement): This method returns a view of the portion of this set whose elements are greater than or equal to fromElement.
+tailSet(E fromElement, boolean inclusive): This method returns a view of the portion of this set whose elements are greater than (or equal to, if inclusive is true) fromElement.
+Example:
+
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java program to demonstrate ConcurrentSkipListSet 
+  
+import java.util.concurrent.ConcurrentSkipListSet; 
+  
+class ConcurrentSkipListSetLastExample1 { 
+    public static void main(String[] args) 
+    { 
+  
+        // Initializing the set using ConcurrentSkipListSet() 
+        ConcurrentSkipListSet<Integer> 
+            set = new ConcurrentSkipListSet<Integer>(); 
+  
+        // Adding elements to this set 
+        // using add() method 
+        set.add(78); 
+        set.add(64); 
+        set.add(12); 
+        set.add(45); 
+        set.add(8); 
+  
+        // Printing the ConcurrentSkipListSet 
+        System.out.println("ConcurrentSkipListSet: "
+                           + set); 
+  
+        // Printing the highest element of the set 
+        // using last() method 
+        System.out.println("The highest element of the set: "
+                           + set.last()); 
+  
+        // Retrieving and removing first element of the set 
+        System.out.println("The first element of the set: "
+                           + set.pollFirst()); 
+  
+        // Checks if 9 is present in the set 
+        // using contains() method 
+        if (set.contains(9)) 
+            System.out.println("9 is present in the set."); 
+        else
+            System.out.println("9 is not present in the set."); 
+  
+        // Printing the size of the set 
+        // using size() method 
+        System.out.println("Number of elements in the set = "
+                           + set.size()); 
+    } 
+} 
+Output:
+ConcurrentSkipListSet: [8, 12, 45, 64, 78]
+The highest element of the set: 78
+The first element of the set: 8
+9 is not present in the set.
+Number of elements in the set = 4
+Reference: https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ConcurrentSkipListSet.html

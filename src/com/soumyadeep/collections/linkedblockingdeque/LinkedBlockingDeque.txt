@@ -1,0 +1,229 @@
+LinkedBlockingDeque in Java with Examples
+The LinkedBlockingDeque class in Java is a part of the Java Collection Framework and implements the Collection interface and the AbstractQueue class. It also implements the BlockingDeque and provides an optionally-bounded functionality based on linked nodes. This optional boundedness is served by passing the required size in the constructor and helps in preventing memory wastage. When unspecified, the capacity is by default taken as Integer.MAX_VALUE.
+
+Class Hierarchy:
+
+java.lang.Object
+ ↳ java.util.AbstractCollection<E>
+    ↳ java.util.AbstractQueue<E>
+        ↳ java.util.concurrent.LinkedBlockingDeque<E>
+Syntax:
+
+public class LinkedBlockingDeque<E>
+    extends AbstractQueue<E>
+        implements BlockingDeque<E>, Serializable
+
+Where E is the type of element maintained 
+by this collection.
+Constructors in Java LinkedBlockingDeque:
+
+LinkedBlockingDeque(): This constructor is used to construct an empty deque. In this case the capacity is set to Integer.MAX_VALUE
+LinkedBlockingDeque(int capacity): This constructor creates a LinkedBlockingDeque with the given (fixed) capacity.
+LinkedBlockingDeque(Collection<E> c): This constructor is used to construct a deque with the elements of the Collection passed as the parameter.
+Below is a sample program to illustrate LinkedBlockingDeque in Java:
+
+
+
+ 
+
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java Program Demonstrate LinkedBlockingDeque 
+  
+import java.util.concurrent.LinkedBlockingDeque; 
+import java.util.*; 
+  
+public class GFG { 
+    public static void main(String[] args) 
+        throws InterruptedException 
+    { 
+  
+        // create object of LinkedBlockingDeque 
+        // using LinkedBlockingDeque() constructor 
+        LinkedBlockingDeque<Integer> LBD 
+            = new LinkedBlockingDeque<Integer>(); 
+  
+        // Add numbers to end of LinkedBlockingDeque 
+        LBD.add(7855642); 
+        LBD.add(35658786); 
+        LBD.add(5278367); 
+        LBD.add(74381793); 
+  
+        // print Dequee 
+        System.out.println("Linked Blocking Deque1: "
+                           + LBD); 
+        System.out.println("Size of Linked Blocking Deque1: "
+                           + LBD.size()); 
+  
+        // create object of LinkedBlockingDeque 
+        // using LinkedBlockingDeque(int capacity) constructor 
+        LinkedBlockingDeque<Integer> LBD1 
+            = new LinkedBlockingDeque<Integer>(3); 
+  
+        // Add numbers to end of LinkedBlockingDeque 
+        LBD1.add(7855642); 
+        LBD1.add(35658786); 
+        LBD1.add(5278367); 
+  
+        try { 
+            // adding the 4th element 
+            // will throw exception for Deque full 
+            LBD1.add(74381793); 
+        } 
+        catch (Exception e) { 
+            System.out.println("Exception: " + e); 
+        } 
+  
+        // print Dequee 
+        System.out.println("Linked Blocking Deque2: "
+                           + LBD1); 
+        System.out.println("Size of Linked Blocking Deque2: "
+                           + LBD1.size()); 
+  
+        // create object of LinkedBlockingDeque 
+        // using LinkedBlockingDeque(Collection c) constructor 
+        LinkedBlockingDeque<Integer> LBD2 
+            = new LinkedBlockingDeque<Integer>(LBD1); 
+  
+        // print Dequee 
+        System.out.println("Linked Blocking Deque3: "
+                           + LBD2); 
+    } 
+} 
+Output:
+Linked Blocking Deque1: [7855642, 35658786, 5278367, 74381793]
+Size of Linked Blocking Deque1: 4
+Exception: java.lang.IllegalStateException: Deque full
+Linked Blocking Deque2: [7855642, 35658786, 5278367]
+Size of Linked Blocking Deque2: 3
+Linked Blocking Deque3: [7855642, 35658786, 5278367]
+Methods in Java LinkedBlockingDeque:
+
+add(E e): This method inserts the specified element at the end of this deque unless it would violate capacity restrictions.
+addAll(Collection<E> c): This method appends all of the elements in the specified collection to the end of this deque, in the order that they are returned by the specified collection’s iterator.
+addFirst(E e): This method inserts the specified element at the front of this deque if it is possible to do so immediately without violating capacity restrictions, throwing an IllegalStateException if no space is currently available.
+addLast(E e): This method inserts the specified element at the end of this deque if it is possible to do so immediately without violating capacity restrictions, throwing an IllegalStateException if no space is currently available.
+clear(): This method atomically removes all of the elements from this deque.
+contains(Object o): This method returns true if this deque contains the specified element.
+descendingIterator(): This method returns an iterator over the elements in this deque in reverse sequential order.
+drainTo(Collection<E> c): This method removes all available elements from this queue and adds them to the given collection.
+drainTo(Collection<E> c, int maxElements): This method removes at most the given number of available elements from this queue and adds them to the given collection.
+element(): This method retrieves, but does not remove, the head of the queue represented by this deque.
+forEach(Consumer<E> action): This method performs the given action for each element of the Iterable until all elements have been processed or the action throws an exception.
+getFirst(): This method retrieves, but does not remove, the first element of this deque.
+getLast(): This method retrieves, but does not remove, the last element of this deque.
+iterator(): This method returns an iterator over the elements in this deque in proper sequence.
+offer(E e): This method inserts the specified element into the queue represented by this deque (in other words, at the tail of this deque) if it is possible to do so immediately without violating capacity restrictions, returning true upon success and false if no space is currently available.
+offer(E e, long timeout, TimeUnit unit): This method inserts the specified element into the queue represented by this deque (in other words, at the tail of this deque), waiting up to the specified wait time if necessary for space to become available.
+offerFirst(E e): This method inserts the specified element at the front of this deque if it is possible to do so immediately without violating capacity restrictions, returning true upon success and false if no space is currently available.
+offerFirst(E e, long timeout, TimeUnit unit): This method inserts the specified element at the front of this deque, waiting up to the specified wait time if necessary for space to become available.
+offerLast(E e): This method inserts the specified element at the end of this deque if it is possible to do so immediately without violating capacity restrictions, returning true upon success and false if no space is currently available.
+offerLast(E e, long timeout, TimeUnit unit): This method inserts the specified element at the end of this deque, waiting up to the specified wait time if necessary for space to become available.
+peek(): This method retrieves, but does not remove, the head of the queue represented by this deque (in other words, the first element of this deque), or returns null if this deque is empty.
+peekFirst(): This method retrieves, but does not remove, the first element of this deque, or returns null if this deque is empty.
+peekLast(): This method retrieves, but does not remove, the last element of this deque, or returns null if this deque is empty.
+poll(): This method retrieves and removes the head of the queue represented by this deque (in other words, the first element of this deque), or returns null if this deque is empty.
+poll(long timeout, TimeUnit unit): This method retrieves and removes the head of the queue represented by this deque (in other words, the first element of this deque), waiting up to the specified wait time if necessary for an element to become available.
+pollFirst(): This method retrieves and removes the first element of this deque, or returns null if this deque is empty.
+pollFirst(long timeout, TimeUnit unit): This method retrieves and removes the first element of this deque, waiting up to the specified wait time if necessary for an element to become available.
+pollLast(): This method retrieves and removes the last element of this deque, or returns null if this deque is empty.
+pollLast(long timeout, TimeUnit unit): This method retrieves and removes the last element of this deque, waiting up to the specified wait time if necessary for an element to become available.
+pop(): This method pops an element from the stack represented by this deque.
+push(E e): This method pushes an element onto the stack represented by this deque (in other words, at the head of this deque) if it is possible to do so immediately without violating capacity restrictions, throwing an IllegalStateException if no space is currently available.
+put(E e): This method inserts the specified element into the queue represented by this deque (in other words, at the tail of this deque), waiting if necessary for space to become available.
+putFirst(E e): This method inserts the specified element at the front of this deque, waiting if necessary for space to become available.
+putLast(E e): This method inserts the specified element at the end of this deque, waiting if necessary for space to become available.
+remainingCapacity(): This method returns the number of additional elements that this deque can ideally (in the absence of memory or resource constraints) accept without blocking.
+remove(): This method retrieves and removes the head of the queue represented by this deque.
+remove(Object o): This method removes the first occurrence of the specified element from this deque.
+removeAll(Collection<E> c): This method removes all of this collection’s elements that are also contained in the specified collection (optional operation).
+removeFirst(): This method retrieves and removes the first element of this deque.
+removeFirstOccurrence(Object o): This method removes the first occurrence of the specified element from this deque.
+removeIf(Predicate<E> filter): This method removes all of the elements of this collection that satisfy the given predicate.
+removeLast(): This method retrieves and removes the last element of this deque.
+removeLastOccurrence(Object o): This method removes the last occurrence of the specified element from this deque.
+retainAll(Collection<E> c): This method retains only the elements in this collection that are contained in the specified collection (optional operation).
+size(): This method returns the number of elements in this deque.
+spliterator(): This method returns a Spliterator over the elements in this deque.
+take(): This method retrieves and removes the head of the queue represented by this deque (in other words, the first element of this deque), waiting if necessary until an element becomes available.
+takeFirst(): This method retrieves and removes the first element of this deque, waiting if necessary until an element becomes available.
+takeLast(): This method retrieves and removes the last element of this deque, waiting if necessary until an element becomes available.
+toArray(): This method returns an array containing all of the elements in this deque, in proper sequence (from first to last element).
+toArray(T[] a): This method returns an array containing all of the elements in this deque, in proper sequence; the runtime type of the returned array is that of the specified array.
+toString(): This method returns a string representation of this collection.
+Example:
+
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java code to illustrate methods of LinkedBlockingDeque 
+  
+import java.util.concurrent.LinkedBlockingDeque; 
+import java.util.*; 
+  
+public class GFG { 
+    public static void main(String[] args) 
+        throws InterruptedException 
+    { 
+  
+        // create object of LinkedBlockingDeque 
+        LinkedBlockingDeque<Integer> LBD 
+            = new LinkedBlockingDeque<Integer>(); 
+  
+        // Add numbers to end of LinkedBlockingDeque 
+        // using add() method 
+        LBD.add(7855642); 
+        LBD.add(35658786); 
+        LBD.add(5278367); 
+        LBD.add(74381793); 
+  
+        // prints the Deque 
+        System.out.println("Linked Blocking Deque: "
+                           + LBD); 
+  
+        // prints the size of Deque after removal 
+        // using size() method 
+        System.out.println("Size of Linked Blocking Deque: "
+                           + LBD.size()); 
+  
+        // removes the front element and prints it 
+        // using removeFirst() method 
+        System.out.println("First element: "
+                           + LBD.removeFirst()); 
+  
+        // prints the Deque 
+        System.out.println("Linked Blocking Deque: "
+                           + LBD); 
+  
+        // prints the size of Deque after removal 
+        // using size() method 
+        System.out.println("Size of Linked Blocking Deque: "
+                           + LBD.size()); 
+  
+        // Add numbers to end of LinkedBlockingDeque 
+        // using offer() method 
+        LBD.offer(20); 
+  
+        // prints the Deque 
+        System.out.println("Linked Blocking Deque: "
+                           + LBD); 
+  
+        // prints the size of Deque after removal 
+        // using size() method 
+        System.out.println("Size of Linked Blocking Deque: "
+                           + LBD.size()); 
+    } 
+} 
+Output:
+Linked Blocking Deque: [7855642, 35658786, 5278367, 74381793]
+Size of Linked Blocking Deque: 4
+First element: 7855642
+Linked Blocking Deque: [35658786, 5278367, 74381793]
+Size of Linked Blocking Deque: 3
+Linked Blocking Deque: [35658786, 5278367, 74381793, 20]
+Size of Linked Blocking Deque: 4

@@ -1,0 +1,175 @@
+LinkedTransferQueue in Java with Examples
+The LinkedTransferQueue class in Java is a part of the Java Collection Framework and implements the Collection interface and the AbstractQueue class. It also implements the TransferQueue and provides an unbounded functionality based on linked nodes. The elements in the LinkedTransferQueue are ordered in FIFO order, with the head pointing to the element that has been on the Queue for the longest time and the tail pointing to the element that has been on the queue for the shortest time.
+
+Class Hierarchy:
+
+java.lang.Object
+ ↳ java.util.AbstractCollection<E>
+    ↳ java.util.AbstractQueue<E>
+        ↳ java.util.concurrent.LinkedTransferQueue<E>
+Syntax:
+
+
+
+ 
+
+public class LinkedTransferQueue<E>
+    extends AbstractQueue<E>
+        implements TransferQueue<E>, Serializable
+
+where E is the type of elements maintained 
+by this collection.
+Constructors in Java LinkedTransferQueue:
+
+LinkedTransferQueue(): This constructor is used to construct an empty queue.
+LinkedTransferQueue(Collection<E> c): This constructor is used to construct a queue with the elements of the Collection passed as the parameter.
+Below is a sample program to illustrate LinkedTransferQueue in Java:
+
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java Program Demonstrate LinkedTransferQueue 
+  
+import java.util.concurrent.LinkedTransferQueue; 
+import java.util.*; 
+  
+public class GFG { 
+    public static void main(String[] args) 
+        throws InterruptedException 
+    { 
+        // create object of LinkedTransferQueue 
+        // using LinkedTransferQueue() constructor 
+        LinkedTransferQueue<Integer> LTQ 
+            = new LinkedTransferQueue<Integer>(); 
+  
+        // Add numbers to end of LinkedTransferQueue 
+        LTQ.add(7855642); 
+        LTQ.add(35658786); 
+        LTQ.add(5278367); 
+        LTQ.add(74381793); 
+  
+        // print Dequee 
+        System.out.println("Linked Transfer Queue1: "
+                           + LTQ); 
+  
+        // create object of LinkedTransferQueue 
+        // using LinkedTransferQueue(Collection c) constructor 
+        LinkedTransferQueue<Integer> LTQ2 
+            = new LinkedTransferQueue<Integer>(LTQ); 
+  
+        // print Dequee 
+        System.out.println("Linked Transfer Queue2: "
+                           + LTQ2); 
+    } 
+} 
+Output:
+Linked Transfer Queue1: [7855642, 35658786, 5278367, 74381793]
+Linked Transfer Queue2: [7855642, 35658786, 5278367, 74381793]
+Methods in Java LinkedTransferQueue:
+
+add(E e): This method inserts the specified element at the tail of this queue.
+clear(): This method Removes all of the elements from this queue.
+contains(Object o): This method returns true if this queue contains the specified element.
+drainTo(Collection<E> c): This method removes all available elements from this queue and adds them to the given collection.
+drainTo(Collection<E> c, int maxElements): This method removes at most the given number of available elements from this queue and adds them to the given collection.
+forEach(Consumer<E> action): This method performs the given action for each element of the Iterable until all elements have been processed or the action throws an exception.
+getWaitingConsumerCount(): This method returns an estimate of the number of consumers waiting to receive elements via BlockingQueue.take() or timed poll.
+hasWaitingConsumer(): This method returns true if there is at least one consumer waiting to receive an element via BlockingQueue.take() or timed poll.
+isEmpty(): This method returns true if this queue contains no elements.
+iterator(): This method returns an iterator over the elements in this queue in proper sequence.
+offer(E e): This method inserts the specified element at the tail of this queue.
+offer(E e, long timeout, TimeUnit unit): This method inserts the specified element at the tail of this queue.
+peek(): This method retrieves, but does not remove, the head of this queue, or returns null if this queue is empty.
+poll(): This method retrieves and removes the head of this queue, or returns null if this queue is empty.
+poll(long timeout, TimeUnit unit): This method retrieves and removes the head of this queue, waiting up to the specified wait time if necessary for an element to become available.
+put(E e): This method inserts the specified element at the tail of this queue.
+remainingCapacity(): This method Always returns Integer.MAX_VALUE because a LinkedTransferQueue is not capacity constrained.
+remove(Object o): This method removes a single instance of the specified element from this queue, if it is present.
+removeAll(Collection<E> c): This method removes all of this collection’s elements that are also contained in the specified collection (optional operation).
+removeIf(Predicate<E> filter): This method removes all of the elements of this collection that satisfy the given predicate.
+retainAll(Collection<E> c): This method retains only the elements in this collection that are contained in the specified collection (optional operation).
+size(): This method returns the number of elements in this queue.
+spliterator(): This method returns a Spliterator over the elements in this queue.
+take(): This method retrieves and removes the head of this queue, waiting if necessary until an element becomes available.
+toArray(): This method returns an array containing all of the elements in this queue, in proper sequence.
+toArray(T[] a): This method returns an array containing all of the elements in this queue, in proper sequence; the runtime type of the returned array is that of the specified array.
+toString(): This method returns a string representation of this collection.
+transfer(E e): This method transfers the element to a consumer, waiting if necessary to do so.
+tryTransfer(E e): This method transfers the element to a waiting consumer immediately, if possible.
+tryTransfer(E e, long timeout, TimeUnit unit): This method transfers the element to a consumer if it is possible to do so before the timeout elapses.
+Example:
+
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java code to illustrate 
+// methods of LinkedTransferQueue 
+  
+import java.util.concurrent.LinkedTransferQueue; 
+import java.util.*; 
+  
+public class GFG { 
+    public static void main(String[] args) 
+        throws InterruptedException 
+    { 
+  
+        // create object of LinkedTransferQueue 
+        LinkedTransferQueue<Integer> LTQ 
+            = new LinkedTransferQueue<Integer>(); 
+  
+        // Add numbers to end of LinkedTransferQueue 
+        // using add() method 
+        LTQ.add(7855642); 
+        LTQ.add(35658786); 
+        LTQ.add(5278367); 
+        LTQ.add(74381793); 
+  
+        // prints the Deque 
+        System.out.println("Linked Transfer Queue: "
+                           + LTQ); 
+  
+        // prints the size of Deque after removal 
+        // using size() method 
+        System.out.println("Size of Linked Transfer Queue: "
+                           + LTQ.size()); 
+  
+        // removes the front element and prints it 
+        // using poll() method 
+        System.out.println("First element: "
+                           + LTQ.poll()); 
+  
+        // prints the Deque 
+        System.out.println("Linked Transfer Queue: "
+                           + LTQ); 
+  
+        // prints the size of Deque after removal 
+        // using size() method 
+        System.out.println("Size of Linked Transfer Queue: "
+                           + LTQ.size()); 
+  
+        // Add numbers to end of LinkedTransferQueue 
+        // using offer() method 
+        LTQ.offer(20); 
+  
+        // prints the Deque 
+        System.out.println("Linked Transfer Queue: "
+                           + LTQ); 
+  
+        // prints the size of Deque after removal 
+        // using size() method 
+        System.out.println("Size of Linked Transfer Queue: "
+                           + LTQ.size()); 
+    } 
+} 
+Output:
+Linked Transfer Queue: [7855642, 35658786, 5278367, 74381793]
+Size of Linked Transfer Queue: 4
+First element: 7855642
+Linked Transfer Queue: [35658786, 5278367, 74381793]
+Size of Linked Transfer Queue: 3
+Linked Transfer Queue: [35658786, 5278367, 74381793, 20]
+Size of Linked Transfer Queue: 4

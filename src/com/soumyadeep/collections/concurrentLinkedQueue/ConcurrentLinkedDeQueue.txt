@@ -1,0 +1,155 @@
+ConcurrentLinkedDeque in Java with Examples
+The ConcurrentLinkedDeque class in Java is a part of the Java Collection Framework and implements the Collection interface and the AbstractCollection class. It is used to implement Deque with the help of LinkedList concurrently.
+
+Class Hierarchy:
+
+java.lang.Object
+   ↳ java.util.AbstractCollection<E>
+     ↳ Class ConcurrentLinkedDeque<E>
+Syntax:
+
+public abstract class ConcurrentLinkedDeque<E>
+   extends AbstractCollection<E>
+      implements Deque<E>, Serializable
+
+Where E is the type of elements maintained
+by this collection.
+Constructors in Java ConcurrentLinkedDeque:
+
+ConcurrentLinkedDeque(): This constructor is used to construct an empty deque.
+ConcurrentLinkedDeque(Collection<E> c): This constructor is used to construct a deque with the elements of the Collection passed as the parameter.
+Below is the sample program to illustrate ConcurrentLinkedDeque in Java:
+
+
+
+ 
+
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java Program to demonstrate ConcurrentLinkedDeque 
+  
+import java.util.concurrent.*; 
+  
+class ConcurrentLinkedDequeDemo { 
+    public static void main(String[] args) 
+    { 
+        // Create a ConcurrentLinkedDeque 
+        // using ConcurrentLinkedDeque() contructor 
+        ConcurrentLinkedDeque<Integer> 
+            cld = new ConcurrentLinkedDeque<Integer>(); 
+  
+        cld.addFirst(12); 
+        cld.addFirst(70); 
+        cld.addFirst(1009); 
+        cld.addFirst(475); 
+  
+        // Displaying the existing LinkedDeque 
+        System.out.println("ConcurrentLinkedDeque: "
+                           + cld); 
+  
+        // Create a ConcurrentLinkedDeque 
+        // using ConcurrentLinkedDeque(Collection c) contructor 
+        ConcurrentLinkedDeque<Integer> 
+            cld1 = new ConcurrentLinkedDeque<Integer>(cld); 
+  
+        // Displaying the existing LinkedDeque 
+        System.out.println("ConcurrentLinkedDeque1: "
+                           + cld1); 
+    } 
+} 
+Output:
+ConcurrentLinkedDeque: [475, 1009, 70, 12]
+ConcurrentLinkedDeque1: [475, 1009, 70, 12]
+Methods in Java ConcurrentLinkedDeque:
+
+add(E e): This method Inserts the specified element at the tail of this deque.
+addAll(Collection c): This method Appends all of the elements in the specified collection to the end of this deque, in the order that they are returned by the specified collection’s iterator.
+addFirst(E e): This method Inserts the specified element at the front of this deque.
+addLast(E e): This method Inserts the specified element at the end of this deque.
+clear(): This method Removes all of the elements from this deque.
+contains(Object o): This method Returns true if this deque contains at least one element e such that o.equals(e).
+descendingIterator(): This method Returns an iterator over the elements in this deque in reverse sequential order.
+element(): This method Retrieves, but does not remove, the head of the queue represented by this deque (in other words, the first element of this deque).
+getFirst(): This method Retrieves, but does not remove, the first element of this deque.
+getLast(): This method Retrieves, but does not remove, the last element of this deque.
+isEmpty(): This method Returns true if this collection contains no elements.
+iterator(): This method Returns an iterator over the elements in this deque in proper sequence.
+offer(E e): This method Inserts the specified element at the tail of this deque.
+offerFirst(E e): This method Inserts the specified element at the front of this deque.
+offerLast(E e): This method Inserts the specified element at the end of this deque.
+peek(): This method Retrieves, but does not remove, the head of the queue represented by this deque (in other words, the first element of this deque), or returns null if this deque is empty.
+peekFirst(): This method Retrieves, but does not remove, the first element of this deque, or returns null if this deque is empty.
+peekLast(): This method Retrieves, but does not remove, the last element of this deque, or returns null if this deque is empty.
+poll(): This method Retrieves and removes the head of the queue represented by this deque (in other words, the first element of this deque), or returns null if this deque is empty.
+pollFirst(): This method Retrieves and removes the first element of this deque, or returns null if this deque is empty.
+pollLast(): This method Retrieves and removes the last element of this deque, or returns null if this deque is empty.
+pop(): This method Pops an element from the stack represented by this deque.
+push(E e): This method Pushes an element onto the stack represented by this deque (in other words, at the head of this deque) if it is possible to do so immediately without violating capacity restrictions, returning true upon success and throwing an IllegalStateException if no space is currently available.
+remove(): This method Retrieves and removes the head of the queue represented by this deque (in other words, the first element of this deque).
+remove(Object o): This method Removes the first element e such that o.equals(e), if such an element exists in this deque.
+removeFirst(): This method Retrieves and removes the first element of this deque.
+removeFirstOccurrence(Object o): This method Removes the first element e such that o.equals(e), if such an element exists in this deque.
+removeLast(): This method Retrieves and removes the last element of this deque.
+removeLastOccurrence(Object o): This method Removes the last element e such that o.equals(e), if such an element exists in this deque.
+size(): This method Returns the number of elements in this deque.
+toArray(): This method Returns an array containing all of the elements in this deque, in proper sequence (from first to last element).
+toArray(T[] a): This method Returns an array containing all of the elements in this deque, in proper sequence (from first to last element); the runtime type of the returned array is that of the specified array.
+Example:
+
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java code to illustrate 
+// methods of ConcurrentLinkedDeque 
+  
+import java.util.concurrent.*; 
+  
+class ConcurrentLinkedDequeDemo { 
+    public static void main(String[] args) 
+    { 
+  
+        // Create a ConcurrentLinkedDeque 
+        // using ConcurrentLinkedDeque() contructor 
+        ConcurrentLinkedDeque<Integer> 
+            cld = new ConcurrentLinkedDeque<Integer>(); 
+  
+        cld.addFirst(12); 
+        cld.addFirst(70); 
+        cld.addFirst(1009); 
+        cld.addFirst(475); 
+  
+        // Displaying the existing LinkedDeque 
+        System.out.println("ConcurrentLinkedDeque: "
+                           + cld); 
+  
+        // Displaying the Last element 
+        // using getLast() method 
+        System.out.println("The Last element is: "
+                           + cld.getLast()); 
+  
+        // Displaying the first element 
+        // using peekFirst() method 
+        System.out.println("First Element is: "
+                           + cld.peekFirst()); 
+  
+        // Remove the Last element 
+        // using removeLast() method 
+        cld.removeLast(); 
+  
+        // Displaying the existing LinkedDeque 
+        System.out.println("ConcurrentLinkedDeque: "
+                           + cld); 
+    } 
+} 
+Output:
+ConcurrentLinkedDeque: [475, 1009, 70, 12]
+The Last element is: 12
+First Element is: 475
+ConcurrentLinkedDeque: [475, 1009, 70]
+Reference: https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ConcurrentLinkedDeque.html
+

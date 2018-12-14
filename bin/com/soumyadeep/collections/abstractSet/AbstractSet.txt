@@ -1,0 +1,134 @@
+AbstractSet Class in Java with Examples
+The AbstractSet class in Java is a part of the Java Collection Framework and implements the Collection interface and the AbstractCollection class. It provides a skeletal implementation of the Set interface. This class does not override any of the implementations from the AbstractCollection class, but merely adds implementations for equals() and hashCode() method.
+
+Class Hierarchy:
+
+java.lang.Object
+ ↳ java.util.AbstractCollection<E>
+    ↳ Class AbstractSet<E>
+Syntax:
+
+
+
+ 
+
+public abstract class AbstractSet<E>
+  extends AbstractCollection<E>
+     implements Set<E>
+
+Where E is the type of elements maintained by 
+this Set.
+Constructors in Java AbstractSet:
+
+protected AbstractSet(): The default constructor, but being protected, it doesn’t allow to create an AbstractSet object.
+Below is a sample program to illustrate the java AbstractSet:
+
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java code to illustrate AbstractSet 
+  
+import java.util.*; 
+  
+public class GFG1 { 
+    public static void main(String[] args) throws Exception 
+    { 
+  
+        try { 
+  
+            // Creating object of AbstractSet<Integer> 
+            AbstractSet<Integer> 
+                abs_set = new TreeSet<Integer>(); 
+  
+            // Populating abs_set 
+            abs_set.add(1); 
+            abs_set.add(2); 
+            abs_set.add(3); 
+            abs_set.add(4); 
+            abs_set.add(5); 
+  
+            // print abs_set 
+            System.out.println("AbstractSet: "
+                               + abs_set); 
+        } 
+        catch (Exception e) { 
+            System.out.println(e); 
+        } 
+    } 
+} 
+Output:
+AbstractSet: [1, 2, 3, 4, 5]
+Methods in Java AbstractSet:
+
+equals(Object o): Compares the specified object with this set for equality.
+hashCode(): Returns the hash code value for this set.
+removeAll(Collection c): Removes from this set all of its elements that are contained in the specified collection (optional operation).
+Example:
+
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java code to illustrate 
+// methods of AbstractSet 
+  
+import java.util.*; 
+  
+public class GFG1 { 
+    public static void main(String[] args) throws Exception 
+    { 
+  
+        try { 
+  
+            // Creating object of AbstractSet<Integer> 
+            AbstractSet<Integer> 
+                abs_set = new TreeSet<Integer>(); 
+  
+            // Populating abs_set 
+            abs_set.add(1); 
+            abs_set.add(2); 
+            abs_set.add(3); 
+            abs_set.add(4); 
+            abs_set.add(5); 
+  
+            // print abs_set 
+            System.out.println("AbstractSet before "
+                               + "removeAll() operation : "
+                               + abs_set); 
+  
+            // Creating another object of ArrayList<Integer> 
+            Collection<Integer> 
+                arrlist2 = new ArrayList<Integer>(); 
+            arrlist2.add(1); 
+            arrlist2.add(2); 
+            arrlist2.add(3); 
+  
+            // print arrlist2 
+            System.out.println("Collection Elements"
+                               + " to be removed : "
+                               + arrlist2); 
+  
+            // Removing elemnts from AbstractSet 
+            // specified in arrlist2 
+            // using removeAll() method 
+            abs_set.removeAll(arrlist2); 
+  
+            // print arrlist1 
+            System.out.println("AbstractSet after "
+                               + "removeAll() operation : "
+                               + abs_set); 
+        } 
+  
+        catch (NullPointerException e) { 
+            System.out.println("Exception thrown : " + e); 
+        } 
+    } 
+} 
+Output:
+AbstractSet before removeAll() operation : [1, 2, 3, 4, 5]
+Collection Elements to be removed : [1, 2, 3]
+AbstractSet after removeAll() operation : [4, 5]
+Reference: https://docs.oracle.com/javase/7/docs/api/java/util/AbstractSet.html

@@ -1,0 +1,313 @@
+Immutable List in Java
+ImmutableList, as suggested by the name, is a type of List which is immutable. It means that the content of the List are fixed or constant after declaration, that is, they are read-only.
+If any attempt made to add, delete and update elements in the List, UnsupportedOperationException is thrown.
+An ImmutableList does not allow null element either.
+If any attempt made to create an ImmutableList with null element, NullPointerException is thrown. If any attempt is made to add null element in List, UnsupportedOperationException is thrown.
+Advantages of ImmutableList
+
+They are thread safe.
+They are memory efficient.
+Since they are immutable, hence they can be passed over to third party libraries without any problem.
+Note that it is an immutable collection, not collection of immutable objects, so the objects inside it can be modified.
+
+Class Declaration:
+
+@GwtCompatible(serializable=true,
+               emulated=true)
+public abstract class ImmutableList
+extends ImmutableCollection
+implements List, RandomAccess
+Class hierarchy:
+
+java.lang.Object
+  ↳ java.util.AbstractCollection
+      ↳ com.google.common.collect.ImmutableCollection
+          ↳ com.google.common.collect.ImmutableList 
+Creating ImmutableList
+ImmutableList can be created by various methods. These include:
+
+
+
+ 
+
+From existing List using copyOf() function of Guava
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Below is the Java program to create ImmutableList 
+  
+import com.google.common.collect.ImmutableList; 
+import java.util.*; 
+  
+class GFG { 
+  
+    // Function to create ImmutableList from List 
+    public static <T> void iList(List<T> list) 
+    { 
+        // Create ImmutableMap from Map using copyOf() 
+        ImmutableList<T> immutableList = 
+                          ImmutableList.copyOf(list); 
+  
+        // Print the ImmutableMap 
+        System.out.println(immutableList); 
+    } 
+  
+    public static void main(String[] args) 
+    { 
+        List<String> list = new ArrayList<>( 
+            Arrays.asList("Geeks", "For", "Geeks")); 
+  
+        iList(list); 
+    } 
+} 
+Output:
+
+[Geeks, For, Geeks]
+New ImmutableList using of() function from Guava
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Below is the Java program to create ImmutableList 
+  
+import com.google.common.collect.ImmutableList; 
+import java.util.*; 
+  
+class GFG { 
+  
+    // Function to create ImmutableList 
+    public static void iList() 
+    { 
+        // Create ImmutableList using of() 
+        ImmutableList<String> immutableList =  
+               ImmutableList.of("Geeks", "For", "Geeks"); 
+  
+        // Print the ImmutableMap 
+        System.out.println(immutableList); 
+    } 
+  
+    public static void main(String[] args) 
+    { 
+        iList(); 
+    } 
+} 
+Output:
+
+[Geeks, For, Geeks]
+Using Java 9 Factory Of() method
+In Java, use of() with Set, Map or List to create an Immutable List.
+
+Please Note: The programs below are of Java 9. Hence you would need a Java 9 compiler to run them.
+
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java code illustrating of() method to 
+// create a ImmutableSet 
+import java.util.*; 
+import com.google.common.collect.ImmutableList; 
+  
+class GfG { 
+    public static void main(String args[]) 
+    { 
+        // non-empty immutable set 
+        List<String> list = List.of("Geeks", "For", "Geeks"); 
+  
+        // Let's print the list 
+        System.out.println(list); 
+    } 
+} 
+Output:
+
+[Geeks, For, Geeks]
+Using Builder() from ImmutableList
+In Guava, ImmnutableList class provides a function Builder(). Through this function, a new ImmutableList can be created, or
+an ImmutableList can be created from an existing List or both.
+
+Creating a new ImmutableList
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java code illustrating of() method to 
+// create a ImmutableList 
+import java.util.*; 
+import com.google.common.collect.ImmutableList; 
+  
+class GfG { 
+    public static void main(String args[]) 
+    { 
+        // non-empty immutable set 
+        ImmutableList<String> iList = ImmutableList.<String>builder() 
+                                          .add("Geeks", "For", "Geeks") 
+                                          .build(); 
+  
+        // Let's print the List 
+        System.out.println(iList); 
+    } 
+} 
+Output:
+
+[Geeks, For, Geeks]
+Creating an ImmutableList from existing List
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java code illustrating of() method to 
+// create a ImmutableList 
+import java.util.*; 
+import com.google.common.collect.ImmutableList; 
+  
+class GfG { 
+    public static void main(String args[]) 
+    { 
+        // non-empty immutable set 
+        List<String> list = List.of("Geeks", "For", "Geeks"); 
+        ImmutableList<String> iList = ImmutableList.<String>builder() 
+                                          .addAll(list) 
+                                          .build(); 
+  
+        // Let's print the List 
+        System.out.println(iList); 
+    } 
+} 
+Output:
+
+[Geeks, For, Geeks]
+Creating a new ImmutableList including the existing List
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java code illustrating of() method to 
+// create a ImmutableList 
+import java.util.*; 
+import com.google.common.collect.ImmutableList; 
+  
+class GfG { 
+    public static void main(String args[]) 
+    { 
+        // non-empty immutable set 
+        List<String> list = List.of("Geeks", "For", "Geeks"); 
+        ImmutableList<String> iList = ImmutableList.<String>builder() 
+                                          .addAll(list) 
+                                          .add("Computer", "Portal", ) 
+                                          .build(); 
+  
+        // Let's print the set 
+        System.out.println(iList); 
+    } 
+} 
+Output:
+
+[Geeks, For, Geeks, Computer, Portal]
+
+
+Try to change ImmutableList
+
+
+
+ 
+
+As mentioned earlier, the below program will throw UnsupportedOperationException.
+
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java code to show that UnsupportedOperationException 
+// will be thrown when ImmutableList is modified. 
+import java.util.*; 
+  
+class GfG { 
+    public static void main(String args[]) 
+    { 
+        // empty immutable map 
+        List<String> list = List.of(); 
+  
+        // Lets try adding element in  List 
+        List.add("Geeks"); 
+    } 
+} 
+Output :
+
+Exception in thread "main" java.lang.UnsupportedOperationException
+    at com.google.common.collect.ImmutableCollection.add(ImmutableCollection.java:218)
+    at ImmutableListDemo.main(Main.java:16)
+How is it different from Collections.unmodifiableList()?
+
+Collections.unmodifiableList creates a wrapper around the same existing List such that the wrapper cannot be used to modify it. However we can still change original List.
+
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java program to demonstrate that a List created using 
+// Collections.unmodifiableList() can be modified indirectly. 
+import java.io.*; 
+import java.util.*; 
+  
+class GFG { 
+    public static void main(String[] args) 
+    { 
+        List<String> list = new ArrayList<>(); 
+        list.add("Geeks"); 
+  
+        // Create ImmutableList from List using copyOf() 
+        List<String> iList = Collections.unmodifiableList(list); 
+  
+        // We change List and the changes reflect in iList. 
+        list.add("For"); 
+        list.add("Geeks"); 
+  
+        System.out.println(iList); 
+    } 
+} 
+
+Output:
+
+[Geeks, For, Geeks]
+If we create an ImmutableList from an existing List and change the existing List, the ImmutableList does not change because a copy is created.
+
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Below is a Java program for 
+// Creating an immutable List using copyOf() 
+// and modifying original List. 
+import java.io.*; 
+import java.util.*; 
+import com.google.common.collect.ImmutableList; 
+  
+class GFG { 
+    public static void main(String[] args) 
+    { 
+        List<String> list = new ArrayList<>(); 
+        list.add("Geeks"); 
+  
+        // Create ImmutableList from List using copyOf() 
+        ImmutableList<String> iList = ImmutableList.copyOf(list); 
+  
+        // We change List and the changes wont reflect in iList. 
+        list.add("For"); 
+        list.add("Geeks"); 
+  
+        System.out.println(iList); 
+    } 
+} 
+Output :
+
+[Geeks]

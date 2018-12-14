@@ -1,0 +1,108 @@
+Creating Sequential Stream from an Iterator in Java
+Iterators, in Java, are used in Collection Framework to retrieve elements one by one.
+
+A stream in Java is a pipeline of objects from an array or a collection data source. A sequential stream is one in which the objects are pipelined in a single stream on the same processing system. Other types of stream include Parallel stream in which the objects are pipelined on multi-processing system.
+
+Hence often it is required to use the iterator as a sequential stream. There are many ways in which it can be done, these are:
+
+Using Spliterator: Spliterator like other Iterators, are for traversing the elements of a source. A source can be a Collection, an IO channel or a generator function.
+Methods used:
+
+
+
+ 
+
+CLASS	MODIFIER AND TYPE	METHOD	DESCRIPTION
+Spliterators	static <T> Spliterator<T>	spliteratorUnknownSize(Iterator<? extends T> iterator, int characteristics)	Creates a Spliterator using a given Iterator as the source of elements, with no initial size estimate.
+StreamSupport	static <T> Stream<T>	stream(Spliterator<T> spliterator, boolean parallel)	Creates a new sequential or parallel Stream from a Spliterator.
+Explanation: Spliterator acts as the intermediate while creating Sequential Stream from Iterator. The Iterator is first converted to Spliterator with the help of Spliterators.spliteratorUnknownSize(). Find the method description of this below. The Spliterator is then converted to Sequential Stream with the help of StreamSupport.stream() function. The second parameter of this function takes the boolean value to whether the stream to be generated is Parallel or not.
+
+Program:
+
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java program to create a Sequential Stream 
+// from an Iterator 
+  
+import java.util.*; 
+import java.util.stream.*; 
+  
+class GfG { 
+    // Function to create a sequential Stream 
+    // from an Iterator 
+    public static <T> Stream<T>  
+                iteratorToSequentialStream(Iterator<T> itr) 
+    { 
+        // convert the iterator into a Spliterator 
+        Spliterator<T> spitr = Spliterators.spliteratorUnknownSize( 
+                                           itr, Spliterator.NONNULL); 
+  
+        // Convert spliterator into a sequential stream 
+        // The second parameter "false" passess whether  
+        // the stream is to be created parallel or not 
+        return StreamSupport.stream(spitr, false); 
+    } 
+  
+    public static void main(String[] args) 
+    { 
+        Iterator<String> iterator = Arrays.asList("G", "E", "E",  
+                                               "K", "S").iterator(); 
+  
+        Stream<String> stream = iteratorToSequentialStream(iterator); 
+          
+        System.out.println("Sequential Stream : " +  
+                    stream.collect(Collectors.toList())); 
+    } 
+} 
+Output:
+Sequential Stream : [G, E, E, K, S]
+
+
+Using Iterable.Spliterator(): Spliterator is the key to create the sequential stream. Hence in this method also, Spliterator is used. But in this method, the source of Spliterator is set to an Iterable created from the Iterator.
+So first the Iterable is created from the Iterator. Then the Spliterator is passed to the stream() method directly as Iterable.spliterator().
+
+Program:
+
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java program to create a Sequential Stream 
+// from an Iterator 
+  
+import java.util.*; 
+import java.util.stream.*; 
+  
+class GfG { 
+    // Function to create a sequential Stream 
+    // from an Iterator 
+    public static <T> Stream<T>  
+                  iteratorToSequentialStream(Iterator<T> itr) 
+    { 
+        // Get an iterable from itr 
+        Iterable<T> itb = () -> itr; 
+  
+        // Get spliterator() from iterable and then 
+        // Convert into a sequential stream. 
+        // The second parameter "false" passess whether the 
+        // stream is to be created parallel or not 
+        return StreamSupport.stream(itb.spliterator(), false); 
+    } 
+  
+    public static void main(String[] args) 
+    { 
+        Iterator<String> iterator = Arrays.asList("G", "E", "E", 
+                                            "K", "S").iterator(); 
+  
+        Stream<String> stream = iteratorToSequentialStream(iterator); 
+          
+        System.out.println("Sequential Stream : " + 
+                    stream.collect(Collectors.toList())); 
+    } 
+} 
+Output:
+Sequential Stream : [G, E, E, K, S]

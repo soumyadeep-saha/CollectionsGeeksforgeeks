@@ -1,0 +1,158 @@
+Iterator vs Foreach In Java
+Background :
+
+Iterator is an interface provided by collection framework to traverse a collection and for a sequential access of items in the collection.
+   
+   // Iterating over collection 'c' using terator
+   for (Iterator i = c.iterator(); i.hasNext(); ) 
+       System.out.println(i.next());
+ 
+
+For eachloop is meant for traversing items in a collection.
+
+
+
+ 
+
+   // Iterating over collection 'c' using for-each 
+   for (Element e: c)
+       System.out.println(e);
+We read the ‘:’ used in for-each loop as “in”. So loop reads as “for each element e in elements”, here elements is the collection which stores Element type items.
+
+Note : In Java 8 using lambda expressions we can simply replace for-each loop with
+
+elements.forEach (e -> System.out.println(e) );
+ 
+ 
+
+Difference between the two traversals
+
+In for-each loop, we can’t modify collection, it will throw a ConcurrentModificationException on the other hand with iterator we can modify collection.
+
+ 
+
+Modifying a collection simply means removing an element or changing content of an item stored in the collection. This occurs because for-each loop implicitly creates an iterator but it is not exposed to the user thus we can’t modify the items in the collections.
+
+When to use which traversal?
+
+If we have to modify collection, we can use Iterator.
+While using nested for loops it is better to use for-each loop, consider the below code for better understanding.
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java program to demonstrate working of nested iterators 
+// may not work as expected and throw exception. 
+import java.util.*; 
+  
+public class Main 
+{ 
+    public static void main(String args[]) 
+    { 
+        // Create a link list which stores integer elements 
+        List<Integer> l = new LinkedList<Integer>(); 
+  
+        // Now add elements to the Link List 
+        l.add(2); 
+        l.add(3); 
+        l.add(4); 
+  
+        // Make another Link List which stores integer elements 
+        List<Integer> s=new LinkedList<Integer>(); 
+        s.add(7); 
+        s.add(8); 
+        s.add(9); 
+  
+        // Iterator to iterate over a Link List 
+        for (Iterator<Integer> itr1=l.iterator(); itr1.hasNext(); ) 
+        { 
+            for (Iterator<Integer> itr2=s.iterator(); itr2.hasNext(); ) 
+            { 
+                if (itr1.next() < itr2.next()) 
+                { 
+                    System.out.println(itr1.next()); 
+                } 
+            } 
+        } 
+    } 
+} 
+Output:
+
+Exception in thread "main" java.util.NoSuchElementException
+    at java.util.LinkedList$ListItr.next(LinkedList.java:888)
+    at Main.main(Main.java:29)
+The above code throws java.util.NoSuchElementException.
+
+In the above code we are calling the next() method again and again for itr1 (i.e., for List l). Now we are advancing the iterator without even checking if it has any more elements left in the collection(in the inner loop), thus we are advancing the iterator more than the number of elements in the collection which leads to NoSuchElementException.
+
+for-each loops are tailor made for nested loops. Replace the iterator code with the below code.
+
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java program to demonstrate working of nested for-each 
+import java.util.*; 
+public class Main 
+{ 
+    public static void main(String args[]) 
+    { 
+        // Create a link list which stores integer elements 
+        List<Integer> l=new LinkedList<Integer>(); 
+  
+        // Now add elements to the Link List 
+        l.add(2); 
+        l.add(3); 
+        l.add(4); 
+  
+        // Make another Link List which stores integer elements 
+        List<Integer> s=new LinkedList<Integer>(); 
+        s.add(2); 
+        s.add(4); 
+        s.add(5); 
+        s.add(6); 
+  
+        // Iterator to iterate over a Link List 
+        for (int a:l) 
+        { 
+            for (int b:s) 
+            { 
+                if (a<b) 
+                    System.out.print(a + " "); 
+            } 
+        } 
+    } 
+} 
+Output:
+
+2 2 2 3 3 3 4 4
+Performance Analysis
+
+
+
+ 
+
+Traversing a collection using for-each loops or iterators give the same performance. Here, by performance we mean the time complexity of both these traversals.
+
+If you iterate using the old styled C for loop then we might increase the time complexity drastically.
+
+// Here l is List ,it can be ArrayList /LinkedList and n is size of the List
+
+for (i=0;i<n;i++)
+   System.out.println(l.get(i));
+Here if the list l is an ArrayList then we can access it in O(1) time since it is allocated contiguous memory blocks (just like an array) i.e random access is possible. But if the collection is LinkedList, then random access is not possible since it is not allocated contiguous memory blocks, so in order to access a element we will have to traverse the link list till you get to the required index, thus the time taken in worst case to access an element will be O(n).
+
+Iterator and for-each loop are faster than simple for loop for collections with no random access, while in collections which allows random access there is no performance change with for-each loop/for loop/iterator.
+
+Related Articles: 
+Iterators in Java
+Retrieving Elements from Collection in Java (For-each, Iterator, ListIterator & EnumerationIterator)
+
+ 
+
+References:
+https://docs.oracle.com/javase/8/docs/technotes/guides/language/foreach.html
+https://docs.oracle.com/javase/7/docs/api/java/util/Iterator.html
+https://stackoverflow.com/questions/2113216/which-is-more-efficient-a-for-each-loop-or-an-iterator

@@ -1,0 +1,137 @@
+ConcurrentLinkedQueue in Java with Examples
+The ConcurrentLinkedQueue class in Java is a part of the Java Collection Framework and implements the Collection interface and the AbstractCollection class. It is used to implement Queue with the help of LinkedList concurrently.
+
+Class Hierarchy:
+
+java.lang.Object
+  ↳ java.util.AbstractCollection<E>
+     ↳ java.util.AbstractQueue<E>
+        ↳ Class ConcurrentLinkedQueue<E>
+Syntax:
+
+public abstract class ConcurrentLinkedQueue<E>
+    extends AbstractCollection<E>
+        implements Queue<E>, Serializable
+
+where E is the type of elements maintained 
+by this collection
+Constructors in Java ConcurrentLinkedQueue:
+
+ConcurrentLinkedQueue(): This constructor is used to construct an empty queue.
+ConcurrentLinkedQueue(Collection<E> c): This constructor is used to construct a queue with the elements of the Collection passed as the parameter.
+Below is a sample program to illustrate ConcurrentLinkedQueue in Java:
+
+
+
+ 
+
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java program to demonstrate ConcurrentLinkedQueue 
+  
+import java.util.concurrent.*; 
+  
+class ConcurrentLinkedQueueDemo { 
+    public static void main(String[] args) 
+    { 
+        // Create a ConcurrentLinkedQueue 
+        // using ConcurrentLinkedQueue() contructor 
+        ConcurrentLinkedQueue<Integer> 
+            clq = new ConcurrentLinkedQueue<Integer>(); 
+  
+        clq.add(12); 
+        clq.add(70); 
+        clq.add(1009); 
+        clq.add(475); 
+  
+        // Displaying the existing LinkedQueue 
+        System.out.println("ConcurrentLinkedQueue: "
+                           + clq); 
+  
+        // Create a ConcurrentLinkedQueue 
+        // using ConcurrentLinkedQueue(Collection c) contructor 
+        ConcurrentLinkedQueue<Integer> 
+            clq1 = new ConcurrentLinkedQueue<Integer>(clq); 
+  
+        // Displaying the existing LinkedQueue 
+        System.out.println("ConcurrentLinkedQueue1: "
+                           + clq1); 
+    } 
+} 
+Output:
+ConcurrentLinkedQueue: [12, 70, 1009, 475]
+ConcurrentLinkedQueue1: [12, 70, 1009, 475]
+Methods in Java ConcurrentLinkedQueue:
+
+add(E e): This method inserts the specified element at the tail of this queue.
+addAll(Collection c): This method appends all of the elements in the specified collection to the end of this queue, in the order that they are returned by the specified collection’s iterator.
+contains(Object o): This method returns true if this queue contains the specified element.
+isEmpty(): This method returns true if this queue contains no elements.
+iterator(): This method returns an iterator over the elements in this queue in proper sequence.
+offer(E e): This method inserts the specified element at the tail of this queue.
+peek(): This method retrieves, but does not remove, the head of this queue, or returns null if this queue is empty.
+poll(): This method retrieves and removes the head of this queue, or returns null if this queue is empty.
+remove(Object o): This method removes a single instance of the specified element from this queue, if it is present.
+size(): This method returns the number of elements in this queue.
+spliterator?(): This method returns a Spliterator over the elements in this queue.
+toArray(): This method returns an array containing all of the elements in this queue, in proper sequence.
+toArray(T[] a): This method returns an array containing all of the elements in this queue, in proper sequence; the runtime type of the returned array is that of the specified array.
+Example:
+
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java code to illustrate 
+// methods of ConcurrentLinkedQueue 
+  
+import java.util.concurrent.*; 
+  
+class ConcurrentLinkedQueueDemo { 
+    public static void main(String[] args) 
+    { 
+  
+        // Create a ConcurrentLinkedQueue 
+        // using ConcurrentLinkedQueue() contructor 
+        ConcurrentLinkedQueue<Integer> 
+            clq = new ConcurrentLinkedQueue<Integer>(); 
+  
+        clq.add(12); 
+        clq.add(70); 
+        clq.add(1009); 
+        clq.add(475); 
+  
+        // Displaying the existing LinkedQueue 
+        System.out.println("ConcurrentLinkedQueue: "
+                           + clq); 
+  
+        // Displaying the first element 
+        // using peek() method 
+        System.out.println("First Element is: "
+                           + clq.peek()); 
+  
+        // Remove and display the first element 
+        // using poll() method 
+        System.out.println("Head Element is: "
+                           + clq.poll()); 
+  
+        // Displaying the existing LinkedQueue 
+        System.out.println("ConcurrentLinkedQueue: "
+                           + clq); 
+  
+        // Get the size using size() method 
+        System.out.println("Size: "
+                           + clq.size()); 
+    } 
+} 
+Output:
+ConcurrentLinkedQueue: [12, 70, 1009, 475]
+First Element is: 12
+Head Element is: 12
+ConcurrentLinkedQueue: [70, 1009, 475]
+Size: 3
+Reference: https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ConcurrentLinkedQueue.html

@@ -1,0 +1,106 @@
+EnumMap class in Java
+EnumMap is specialized implementation of Map interface for enumeration types. It extends AbstractMap and implements Map Interface in Java. Few important features of EnumMap are as follows:
+
+EnumMap class is a member of the Java Collections Framework & is not synchronized.
+EnumMap is ordered collection and they are maintained in the natural order of their keys( natural order of keys means the order on which enum constant are declared inside enum type )
+It’s a high performance map implementation, much faster than HashMap.
+All keys of each EnumMap instance must be keys of a single enum type.
+EnumMap doesn’t allow null key and throw NullPointerException, at same time null values are permitted.
+Declaration:
+
+public class EnumMap<K extends Enum<K>,V>
+K: specifies the keys
+V: specifies values
+K must extend Enum, which enforces the requirement that the keys must be of specified enum type.
+
+Constructors in EnumMap:
+
+EnumMap(Class keyType): The constructor is used to create an empty EnumMap with the specified keyType.
+EnumMap(EnumMap m): The constructor is used to create an enum map with the same keyType as the specified enum map, with initial mappings being the same as enum map.
+EnumMap(Map m): The constructor is used to create an enum map with initialization from the specified map in the parameter.
+Example:
+
+
+
+ 
+
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java program to illustrate working of EnumMap and 
+// its functions. 
+import java.util.EnumMap; 
+  
+public class Example 
+{ 
+    public enum GFG 
+    { 
+        CODE, CONTRIBUTE, QUIZ, MCQ; 
+    } 
+  
+    public static void main(String args[])  
+    {     
+        // Java EnumMap  
+        // Creating EnumMap in java with key   
+        // as enum type STATE 
+        EnumMap<GFG, String> gfgMap = new 
+                     EnumMap<GFG, String>(GFG.class); 
+  
+        // Java EnumMap Example 2: 
+        // Putting values inside EnumMap in Java 
+        // Inserting Enum keys different from  
+        // their natural order 
+        gfgMap.put(GFG.CODE, "Start Coding with gfg"); 
+        gfgMap.put(GFG.CONTRIBUTE, "Contribute for others"); 
+        gfgMap.put(GFG.QUIZ, "Practice Quizes"); 
+        gfgMap.put(GFG.MCQ, "Test Speed with Mcqs"); 
+          
+        // Printing size of EnumMap in java 
+        System.out.println("Size of EnumMap in java: " +  
+                                       gfgMap.size()); 
+       
+        // Printing Java EnumMap  
+        // Print EnumMap in natural order 
+        // of enum keys (order on which they are declared) 
+        System.out.println("EnumMap: " + gfgMap); 
+       
+        // Retrieving value from EnumMap in java 
+        System.out.println("Key : " + GFG.CODE +" Value: " 
+                                   + gfgMap.get(GFG.CODE)); 
+       
+        // Checking if EnumMap contains a particular key 
+        System.out.println("Does gfgMap has "+GFG.CONTRIBUTE+": "
+                            + gfgMap.containsKey(GFG.CONTRIBUTE)); 
+       
+        // Checking if EnumMap contains a particular value 
+        System.out.println("Does gfgMap has :" + GFG.QUIZ + " : " 
+                            + gfgMap.containsValue("Practice Quizes")); 
+        System.out.println("Does gfgMap has :" + GFG.QUIZ + " : " 
+                            + gfgMap.containsValue(null)); 
+    } 
+} 
+Output:
+Size of EnumMap in java: 4
+EnumMap: {CODE=Start Coding with gfg, CONTRIBUTE=Contribute for others, 
+                       QUIZ=Practice Quizes, MCQ=Test Speed with Mcqs}
+Key : CODE Value: Start Coding with gfg
+Does gfgMap has CONTRIBUTE: true
+Does gfgMap has :QUIZ : true
+Does gfgMap has :QUIZ : false
+Methods in EnumMap:
+
+put(K key, V value): Associates the specified value with the specified key in this map.
+putall(M map): Used to copy one map into another.
+values(): Returns the collection view of the values in map.
+remove(Object key): Used to remove a specific key from the map.
+clone(): Returns a shallow copy of the map.
+entrySet(): Returns the set view of the mappings.
+clear(): Used to remove all the mappings from the map.
+equals(Object obj): Used to compare one map with another.
+size(): Returns the number of key-value mappings in this map.
+get(Object key): Returns the value to which the specified key is mapped, or null if this map contains no mapping for the key.
+containsKey(Object key): Returns true if this map contains a mapping for the specified key.
+containsValue(Object value): Returns true if this map maps one or more keys to the specified value.
+keyset(): Returns the set view of the keys/

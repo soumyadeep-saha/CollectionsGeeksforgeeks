@@ -1,0 +1,112 @@
+Stack Class in Java
+Java Collection framework provides a Stack class which models and implements Stack data structure. The class is based on the basic principle of last-in-first-out. In addition to the basic push and pop operations, the class provides three more functions of empty, search and peek. The class can also be said to extend Vector and treats the class as a stack with the five mentioned functions. The class can also be referred to as the subclass of Vector.
+This diagram shows the hierarchy of Stack class:
+
+The class supports one default constructor Stack() which is used to create an empty stack.
+Below program shows few basic operations provided by the Stack class:
+
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java code for stack implementation 
+  
+import java.io.*; 
+import java.util.*; 
+  
+class Test 
+{    
+    // Pushing element on the top of the stack 
+    static void stack_push(Stack<Integer> stack) 
+    { 
+        for(int i = 0; i < 5; i++) 
+        { 
+            stack.push(i); 
+        } 
+    } 
+      
+    // Popping element from the top of the stack 
+    static void stack_pop(Stack<Integer> stack) 
+    { 
+        System.out.println("Pop :"); 
+  
+        for(int i = 0; i < 5; i++) 
+        { 
+            Integer y = (Integer) stack.pop(); 
+            System.out.println(y); 
+        } 
+    } 
+  
+    // Displaying element on the top of the stack 
+    static void stack_peek(Stack<Integer> stack) 
+    { 
+        Integer element = (Integer) stack.peek(); 
+        System.out.println("Element on stack top : " + element); 
+    } 
+      
+    // Searching element in the stack 
+    static void stack_search(Stack<Integer> stack, int element) 
+    { 
+        Integer pos = (Integer) stack.search(element); 
+  
+        if(pos == -1) 
+            System.out.println("Element not found"); 
+        else
+            System.out.println("Element is found at position " + pos); 
+    } 
+  
+  
+    public static void main (String[] args) 
+    { 
+        Stack<Integer> stack = new Stack<Integer>(); 
+  
+        stack_push(stack); 
+        stack_pop(stack); 
+        stack_push(stack); 
+        stack_peek(stack); 
+        stack_search(stack, 2); 
+        stack_search(stack, 6); 
+    } 
+} 
+Output:
+Pop :
+4
+3
+2
+1
+0
+Element on stack top : 4
+Element is found at position 3
+Element not found
+Methods in Stack class
+
+Object push(Object element) : Pushes an element on the top of the stack.
+Object pop() : Removes and returns the top element of the stack. An ‘EmptyStackException’ exception is thrown if we call pop() when the invoking stack is empty.
+Object peek() : Returns the element on the top of the stack, but does not remove it.
+boolean empty() : It returns true if nothing is on the top of the stack. Else, returns false.
+int search(Object element) : It determines whether an object exists in the stack. If the element is found, it returns the position of the element from the top of the stack. Else, it returns -1.
+This article is contributed by Mehak Narang.
+
+Please write comments if you find anything incorrect, or you want to share more information about the topic discussed above.
+
+
+
+ 
+
+Recommended Posts:
+Implement Triplet Class with Pair Class in Java using JavaTuples
+Implement Pair Class with Unit Class in Java using JavaTuples
+Implement Octet Class from Septet Class in Java using JavaTuples
+Implement Septet Class from Sextet Class in Java using JavaTuples
+Implement Quartet Class with Triplet Class in Java using JavaTuples
+Implement Decade Class from Ennead Class in Java using JavaTuples
+Implement Quintet Class with Quartet Class in Java using JavaTuples
+Implement Sextet Class from Quintet Class in Java using JavaTuples
+Implement Ennead Class from Octet Class in Java using JavaTuples
+Using predefined class name as Class or Variable name in Java
+Java.lang.Class class in Java | Set 2
+Java.lang.Class class in Java | Set 1
+Stack pop() Method in Java
+Infix to Postfix using different Precedence Values for In-Stack and Out-Stack
+Stack Permutations (Check if an array is stack permutation of other)

@@ -1,0 +1,58 @@
+Iterator vs Collection in Java
+Iterator and Collection, both has helped and comforted the programmers at many a times. But there usage and application has a very wide difference.
+
+Iterator
+Decleration
+public interface Iterator
+
+Type Parameters:
+E - the type of elements returned by this iterator
+Iterators are used in Collection framework in Java to retrieve elements one by one.
+Method Summary
+MODIFIER AND TYPE	METHOD	DESCRIPTION
+default void	forEachRemaining(Consumer<? super E> action)	Performs the given action for each remaining element until all elements have been processed or the action throws an exception.
+boolean	hasNext()	Returns true if the iteration has more elements.
+E	next()	Returns the next element in the iteration.
+default void	remove()	Removes from the underlying collection the last element returned by this iterator (optional operation).
+
+Collection
+
+ 
+
+Declaration:
+public interface Collection<E> extends Iterable<E>
+
+Type Parameters:
+E - the type of elements returned by this iterator
+A Collection is a group of individual objects represented as a single unit. Java provides Collection Framework which defines several classes and interfaces to represent a group of objects as a single unit.
+Method Summary
+MODIFIER AND TYPE	METHOD	DESCRIPTION
+boolean	add(E e)	Ensures that this collection contains the specified element (optional operation).
+boolean	addAll(Collection<? extends E> c)	Adds all of the elements in the specified collection to this collection (optional operation).
+void	clear()	Removes all of the elements from this collection (optional operation).
+boolean	contains(Object o)	Returns true if this collection contains the specified element.
+boolean	containsAll(Collection<?> c)	Returns true if this collection contains all of the elements in the specified collection.
+boolean	equals(Object o)	Compares the specified object with this collection for equality.
+int	hashCode()	Returns the hash code value for this collection.
+boolean	isEmpty()	Returns true if this collection contains no elements.
+Iterator<E>	iterator()	Returns an iterator over the elements in this collection.
+default Stream<E>	parallelStream()	Returns a possibly parallel Stream with this collection as its source.
+boolean	remove(Object o)	Removes a single instance of the specified element from this collection, if it is present (optional operation).
+boolean	removeAll(Collection<?> c)	Removes all of this collection’s elements that are also contained in the specified collection (optional operation).
+default boolean	removeIf(Predicate<? super E> filter)	Removes all of the elements of this collection that satisfy the given predicate.
+boolean	retainAll(Collection<?> c)	Retains only the elements in this collection that are contained in the specified collection (optional operation).
+int	size()	Returns the number of elements in this collection.
+default Spliterator<E>	spliterator()	Creates a Spliterator over the elements in this collection.
+default Stream<E>	stream()	Returns a sequential Stream with this collection as its source.
+Object[]	toArray()	Returns an array containing all of the elements in this collection.
+T[]	toArray(T[] a)	Returns an array containing all of the elements in this collection; the runtime type of the returned array is that of the specified array.
+
+
+Iterator Vs. Collection
+
+Iterator can only move to next() element or remove() an element.
+However Collection can add(), iterate, remove() or clear() the elements of the collection.
+Iterator provides a better speed than Collections, as the Iterator interface has limited number of operations.
+java.sql.SQLException extends Iterable. Hence it allows the caller to safely iterate over causes of SQLException.
+Using a collection, in this case, would be expensive because, in a chain of n exceptions, use of a collection in the SQLException interface would potentially require the construction of O(n^2) elements.
+However, use of Iterable provides O(n) access to the exception chain.

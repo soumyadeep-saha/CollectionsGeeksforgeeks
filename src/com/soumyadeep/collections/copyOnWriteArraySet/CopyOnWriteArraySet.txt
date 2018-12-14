@@ -1,0 +1,125 @@
+CopyOnWriteArraySet in java
+CopyOnWriteArraySet is a Set that uses an internal CopyOnWriteArrayList for all of its operations. It is introduced in JDK 1.5, we can say that it is thread-safe version of Set.
+
+
+It share some properties of Set and also has its own properties:
+
+The internal implementation of CopyOnWriteArraySet is CopyOnWriteArrayList only.
+Insertion order is preserved and duplicates are allowed.
+Multiple Threads are able to perform update operation simultaneously but for every update operation a separate cloned copy is created. As for every update a new cloned copy will be created which is costly. Hence if multiple update operation are required then it is not recommended to use CopyOnWriteArraySet.
+While one thread iterating the Set, other threads can perform updation, here we wont get any runtime exception like ConcurrentModificationException.
+Iterator of CopyOnWriteArraySet class can perform only read only and wont perform deletion, otherwise we will get Run-time exception UnsupportedOperationException.
+Constructors of CopyOnWriteArraySet:
+
+CopyOnWriteArraySet c = new CopyOnWriteArraySet(): Creates an empty set.
+CopyOnWriteArraySet c = new CopyOnWriteArraySet(Collection c): Creates a set containing all of the elements of the specified collection.
+Methods in CopyOnWriteArraySet:
+
+add​(E e): This method Adds the specified element to this set if it is not already present.
+addAll​(Collection c): This method Adds all of the elements in the specified collection to this set if they’re not already present.
+clear​(): This method Removes all of the elements from this set.
+contains​(Object o): This method Returns true if this set contains the specified element.
+containsAll​(Collection c): This method Returns true if this set contains all of the elements of the specified collection.
+equals​(Object o): This method Compares the specified object with this set for equality.
+forEach​(Consumer action): This method Performs the given action for each element of the Iterable until all elements have been processed or the action throws an exception.
+isEmpty​(): This method Returns true if this set contains no elements.
+iterator​(): This method Returns an iterator over the elements contained in this set in the order in which these elements were added.
+remove​(Object o): This method Removes the specified element from this set if it is present.
+removeAll​(Collection c): This method Removes from this set all of its elements that are contained in the specified collection.
+removeIf​(Predicate filter): This method Removes all of the elements of this collection that satisfy the given predicate.
+retainAll​(Collection c): This method Retains only the elements in this set that are contained in the specified collection.
+size​(): This method Returns the number of elements in this set.
+spliterator​(): This method Returns a Spliterator over the elements in this set in the order in which these elements were added.
+toArray​(): This method Returns an array containing all of the elements in this set.
+toArray​(T[] a): This method Returns an array containing all of the elements in this set; the runtime type of the returned array is that of the specified array.
+Example:
+
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java program to illustrate  
+// CopyOnWriteArraySet class 
+import java.util.concurrent.*; 
+import java.util.*; 
+  
+class ConcurrentDemo extends Thread { 
+  
+    static CopyOnWriteArraySet l = new CopyOnWriteArraySet(); 
+  
+    public void run() 
+    { 
+        // Child thread trying to add 
+        // new element in the Set object 
+        l.add("D"); 
+    } 
+      
+    public static void main(String[] args)  
+    { 
+        l.add("A"); 
+        l.add("B"); 
+        l.add("C"); 
+  
+        // We create a child thread  
+        // that is going to modify  
+        // CopyOnWriteArraySet l. 
+        ConcurrentDemo t = new ConcurrentDemo(); 
+        t.start(); 
+  
+        // Wait for the thread to  
+        // add the element. 
+        try { 
+            Thread.sleep(2000); 
+        } 
+        catch (InterruptedException e) { 
+            System.out.println("child going to add element"); 
+        } 
+          
+        System.out.println(l); 
+          
+        // Now we iterate through the  
+        // CopyOnWriteArraySet and we 
+        // wont get exception. 
+        Iterator itr = l.iterator(); 
+        while (itr.hasNext())  
+        { 
+            String s = (String)itr.next(); 
+            System.out.println(s); 
+          
+            if(s.equals("C")) 
+            { 
+                // Here we will get 
+                // RuntimeException 
+                itr.remove(); 
+            } 
+        } 
+    } 
+} 
+Output:
+
+[A, B, C, D]
+A
+B
+C
+Exception in thread "main" java.lang.UnsupportedOperationException
+
+
+ 
+
+Recommended Posts:
+CopyOnWriteArraySet add() method in Java
+CopyOnWriteArraySet contains() method in Java
+CopyOnWriteArraySet equals() method in Java
+CopyOnWriteArraySet iterator() method in Java
+CopyOnWriteArraySet size() method in Java
+CopyOnWriteArraySet isEmpty() method in Java
+CopyOnWriteArraySet clear() method in Java
+CopyOnWriteArraySet spliterator() method in Java
+CopyOnWriteArraySet remove() method in Java
+Java.util.LinkedList.poll(), pollFirst(), pollLast() with examples in Java
+Java lang.Long.reverse() method in Java with Examples
+Java.util.LinkedList.offer(), offerFirst(), offerLast() in Java
+Java.util.LinkedList.peek() , peekfirst(), peeklast() in Java
+Java lang.Long.numberOfTrailingZeros() method in Java with Examples
+Java lang.Long.numberOfLeadingZeros() method in Java with Examples

@@ -1,0 +1,151 @@
+Traverse through a HashMap in Java
+HashMap is a part of the java collections framework. It internally uses hashing technique.
+
+This post contains different ways of traversing through a HashMap, which are given below:
+
+Using an Iterator: Iterator is an interface in java.util package which is used to iterate through a collection.
+hm.entrySet() is used to retrieve all the key-value pairs called Map.Entries and stores internally into a set.
+hm.entrySet().iterator() returns a iterator which acts as a cursor and points at the first element of the set and moves on till the end.
+hmIterator.hasNext() checks for the next element in the set and returns a boolean
+hmIterator.next() returns the next element(Map.Entry) from the set.
+mapElement.getKey() returns the key of the associated Map.Entry
+mapElement.getValue() return the value of the associated Map.Entry
+Example:
+
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java program to traverse through 
+// a hashmap using iterator 
+  
+import java.util.*; 
+  
+class GfG { 
+    public static void main(String[] args) 
+    { 
+        // Consider the hashmap contains 
+        // student name and their marks 
+        HashMap<String, Integer> hm =  
+                    new HashMap<String, Integer>(); 
+  
+        // Adding mappings to HashMap 
+        hm.put("GeeksforGeeks", 54); 
+        hm.put("A computer portal", 80); 
+        hm.put("For geeks", 82); 
+  
+        // Printing the HashMap 
+        System.out.println("Created hashmap is" + hm); 
+  
+        // Getting an iterator 
+        Iterator hmIterator = hm.entrySet().iterator(); 
+  
+        // Iterate through the hashmap 
+        // and add some bonus marks for every student 
+        System.out.println("HashMap after adding bonus marks:"); 
+  
+        while (hmIterator.hasNext()) { 
+            Map.Entry mapElement = (Map.Entry)hmIterator.next(); 
+            int marks = ((int)mapElement.getValue() + 10); 
+            System.out.println(mapElement.getKey() + " : " + marks); 
+        } 
+    } 
+} 
+Output:
+Created hashmap is{GeeksforGeeks=54, A computer portal=80, For geeks=82}
+HashMap after adding bonus marks:
+GeeksforGeeks : 64
+A computer portal : 90
+For geeks : 92
+Using for-each loop:
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java program for traversing 
+// through a hashmap using for-each loop 
+  
+import java.util.*; 
+  
+class GfG { 
+    public static void main(String[] args) 
+    { 
+  
+        // Consider the hashmap containing 
+        // student name and their marks 
+        HashMap<String, Integer> hm =  
+                     new HashMap<String, Integer>(); 
+  
+        // Adding mappings to HashMap 
+        hm.put("GeeksforGeeks", 54); 
+        hm.put("A computer portal", 80); 
+        hm.put("For geeks", 82); 
+  
+        // Printing the HashMap 
+        System.out.println("Created hashmap is" + hm); 
+  
+        // Loop through the hashmap 
+        System.out.println("HashMap after adding bonus marks:"); 
+  
+        // Using for-each loop 
+        for (Map.Entry mapElement : hm.entrySet()) { 
+            String key = (String)mapElement.getKey(); 
+  
+            // Add some bonus marks 
+            // to all the students and print it 
+            int value = ((int)mapElement.getValue() + 10); 
+  
+            System.out.println(key + " : " + value); 
+        } 
+    } 
+} 
+Output:
+Created hashmap is{GeeksforGeeks=54, A computer portal=80, For geeks=82}
+HashMap after adding bonus marks:
+GeeksforGeeks : 64
+A computer portal : 90
+For geeks : 92
+Using forEach() method: forEach() is a method of hashmap which is introduced in java 8. It is used to iterate through the hashmap and also reduces the number of lines of code.
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java program for traversing 
+// through a hashmap using for-each loop 
+  
+import java.util.*; 
+  
+class GfG { 
+    public static void main(String[] args) 
+    { 
+  
+        // Consider the hashmap containing 
+        // student name and their marks 
+        HashMap<String, Integer> hm =  
+                      new HashMap<String, Integer>(); 
+  
+        // Adding mappings to HashMap 
+        hm.put("GeeksforGeeks", 54); 
+        hm.put("A computer portal", 80); 
+        hm.put("For geeks", 82); 
+  
+        // Printing the HashMap 
+        System.out.println("Created hashmap is" + hm); 
+  
+        // Loop through the hashmap 
+        // and add bonus marks 
+        System.out.println("HashMap after adding bonus marks:"); 
+  
+        // Using Hashmap.forEach() 
+        hm.forEach((k, v) -> System.out.println(k + " : " + (v + 10))); 
+    } 
+} 
+Output:
+Created hashmap is{GeeksforGeeks=54, A computer portal=80, For geeks=82}
+HashMap after adding bonus marks:
+GeeksforGeeks : 64
+A computer portal : 90
+For geeks : 92

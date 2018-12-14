@@ -1,0 +1,109 @@
+AbstractQueue in Java with Examples
+The AbstractQueue class in Java is a part of the Java Collection Framework and implements the Collection interface and the AbstractCollection class. It provides skeletal implementations of some Queue operations. The implementations in this class are appropriate when the base implementation does not allow null elements.
+
+Class Hierarchy:
+
+java.lang.Object
+ ↳ java.util.AbstractCollection<E>
+    ↳ Class AbstractQueue<E>
+Syntax:
+
+public abstract class AbstractQueue<E>
+  extends AbstractCollection<E>
+     implements Queue<E>
+
+Where E is the type of element maintained by 
+this collection class.
+Constructors in Java AbstractQueue:
+
+protected AbstractQueue(): The default constructor, but being protected, it doesn’t allow to create an AbstractQueue object.
+Below is a sample program to illustrate AbstractQueue in Java:
+
+
+
+ 
+
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java code to illustrate AbstractQueue 
+  
+import java.util.*; 
+import java.util.concurrent.LinkedBlockingQueue; 
+  
+public class GFG1 { 
+    public static void main(String[] argv) 
+        throws Exception 
+    { 
+        // Creating object of AbstractQueue<Integer> 
+        AbstractQueue<Integer> 
+            AQ = new LinkedBlockingQueue<Integer>(); 
+  
+        // Populating AQ 
+        AQ.add(10); 
+        AQ.add(20); 
+        AQ.add(30); 
+        AQ.add(40); 
+        AQ.add(50); 
+  
+        // print AQ 
+        System.out.println("AbstractQueue contains: "
+                           + AQ); 
+    } 
+} 
+Output:
+AbstractQueue contains: [10, 20, 30, 40, 50]
+Methods in Java AbstractQueue:
+
+add(E e): Inserts the specified element into this queue if it is possible to do so immediately without violating capacity restrictions, returning true upon success and throwing an IllegalStateException if no space is currently available.
+addAll(Collection c): Adds all of the elements in the specified collection to this queue.
+clear(): Removes all of the elements from this queue.
+element(): Retrieves, but does not remove, the head of this queue.
+remove(): Retrieves and removes the head of this queue.
+Example:
+
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java code to illustrate 
+// methods of AbstractQueue 
+  
+import java.util.*; 
+import java.util.concurrent.LinkedBlockingQueue; 
+  
+public class GFG1 { 
+    public static void main(String[] argv) 
+        throws Exception 
+    { 
+        // Creating object of AbstractQueue<Integer> 
+        AbstractQueue<Integer> 
+            AQ = new LinkedBlockingQueue<Integer>(); 
+  
+        // Populating AQ using add() method 
+        AQ.add(10); 
+        AQ.add(20); 
+        AQ.add(30); 
+        AQ.add(40); 
+        AQ.add(50); 
+  
+        // print AQ 
+        System.out.println("AbstractQueue contains: "
+                           + AQ); 
+  
+        // Get the head of Queue using element() method 
+        System.out.println("Head: " + AQ.element()); 
+  
+        // Clear the Queue using clear() method 
+        AQ.clear(); 
+        System.out.println("AbstractQueue: " + AQ); 
+    } 
+} 
+Output:
+AbstractQueue contains: [10, 20, 30, 40, 50]
+Head: 10
+AbstractQueue: []
+Reference: https://docs.oracle.com/javase/7/docs/api/java/util/AbstractQueue.html

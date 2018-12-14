@@ -1,0 +1,104 @@
+How to use Iterator in Java?
+‘Iterator’ is an interface which belongs to collection framework. It allows us to traverse the collection, access the data element and remove the data elements of the collection.
+java.util package has public interface Iterator and contains three methods:
+
+boolean hasNext(): It returns true if Iterator has more element to iterate.
+Object next(): It returns the next element in the collection until the hasNext()method return true. This method throws ‘NoSuchElementException’ if there is no next element.
+void remove(): It removes the current element in the collection. This method throws ‘IllegalStateException’ if this function is called before next( ) is invoked.
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java code to illustrate the use of iterator 
+import java.io.*; 
+import java.util.*; 
+  
+class Test { 
+    public static void main(String[] args) 
+    { 
+        ArrayList<String> list = new ArrayList<String>(); 
+  
+        list.add("A"); 
+        list.add("B"); 
+        list.add("C"); 
+        list.add("D"); 
+        list.add("E"); 
+  
+        // Iterator to traverse the list 
+        Iterator iterator = list.iterator(); 
+  
+        System.out.println("List elements : "); 
+  
+        while (iterator.hasNext()) 
+            System.out.print(iterator.next() + " "); 
+  
+        System.out.println(); 
+    } 
+} 
+Output:
+
+List elements : 
+A B C D E 
+ListIterator
+
+‘ListIterator’ in Java is an Iterator which allows users to traverse Collection in both direction. It contains the following methods:
+
+void add(Object object): It inserts object immediately before the element that is returned by the next( ) function.
+boolean hasNext( ): It returns true if the list has a next element.
+boolean hasPrevious( ): It returns true if the list has a previous element.
+Object next( ): It returns the next element of the list. It throws ‘NoSuchElementException’ if there is no next element in the list.
+Object previous( ): It returns the previous element of the list. It throws ‘NoSuchElementException’ if there is no previous element.
+void remove( ): It removes the current element from the list. It throws ‘IllegalStateException’ if this function is called before next( ) or previous( ) is invoked.
+filter_none
+edit
+play_arrow
+
+brightness_4
+// Java code to illustrate the use of ListIterator 
+import java.io.*; 
+import java.util.*; 
+  
+class Test { 
+    public static void main(String[] args) 
+    { 
+        ArrayList<String> list = new ArrayList<String>(); 
+  
+        list.add("A"); 
+        list.add("B"); 
+        list.add("C"); 
+        list.add("D"); 
+        list.add("E"); 
+  
+        // ListIterator to traverse the list 
+        ListIterator iterator = list.listIterator(); 
+  
+        // Traversing the list in forward direction 
+        System.out.println("Displaying list elements in forward direction : "); 
+  
+        while (iterator.hasNext()) 
+            System.out.print(iterator.next() + " "); 
+  
+        System.out.println(); 
+  
+        // Traversing the list in backward direction 
+        System.out.println("Displaying list elements in backward direction : "); 
+  
+        while (iterator.hasPrevious()) 
+            System.out.print(iterator.previous() + " "); 
+  
+        System.out.println(); 
+    } 
+} 
+Output:
+
+Displaying list elements in forward direction : 
+A B C D E 
+Displaying list elements in backward direction : 
+E D C B A 
+ 
+Related Articles:
+
+Iterators in Java
+Iterator vs Foreach In Java
+Retrieving Elements from Collection in Java (For-each, Iterator, ListIterator & EnumerationIterator)
